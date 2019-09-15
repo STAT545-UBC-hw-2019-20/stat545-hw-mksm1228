@@ -1,6 +1,5 @@
 # **Martin Keung's STAT545A Homework Repository**
 
-
 **Hello visitor! In this repository you will find out more about:**
 
 1.  What is this repository?
@@ -21,7 +20,7 @@ This repository contains Martin Keung's homework assignments for STAT545A, a dat
 
 ---------------------------------------------------------------------
 
-To view or clone the contents of this repository on your computer, please use the link below. 
+This repository will have folders corresponding to each assignment. To view the contents of this repository onto your computer, please use the link below. 
 
 > https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228.git
 
@@ -33,3 +32,4 @@ As of September 16, 2019, this repository only contains the files for assignment
 ---------------------------------------------------------------------
 
 My name is Martin Keung and I am a student in the graduate program of [Neuroscience](https://neuroscience.centreforbrainhealth.ca/) at the University of British Columbia under the supervision of [Dr. Brian Kwon](https://icord.org/researchers/dr-brian-kwon/). In my spare time, I enjoy playing badminton and I also like to play the piano :musical note:. I also have a food instagram page that I share with my girlfriend. If you need ideas for places to eat, please consider following us @vancvrbites on Instagram. 
+

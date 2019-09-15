@@ -22,7 +22,7 @@ This repository contains Martin Keung's homework assignments for STAT545A, a dat
 
 ---------------------------------------------------------------------
 
-To view or clone the contents of this repository on your computer, please use the link below. 
+This repository will have folders corresponding to each assignment. To view the contents of this repository onto your computer, please use the link below. 
 
 > https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228.git
 

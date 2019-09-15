@@ -1,7 +1,5 @@
 # **Martin Keung's STAT545A Homework Repository**
 
--------------------------------
-
 **Hello visitor! In this repository you will find out more about:**
 
 1.  What is this repository?

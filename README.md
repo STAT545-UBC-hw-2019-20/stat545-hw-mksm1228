@@ -26,7 +26,7 @@ This repository will have folders corresponding to each assignment. To view the 
 
 As of September 16, 2019, this repository only contains the files for Assignment 1 and the README.md file.
 
-Click here to access the files for [Assignment 1](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01)
+Click here to access the files for [Assignment 1.](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01)
 
 ### **About the author** :boy:
 

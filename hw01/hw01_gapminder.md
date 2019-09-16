@@ -154,6 +154,6 @@ output:
 ## 
 ```
 
-### **Conclusion**
+### **Ending Remarks**
 This concludes my exploration of the gapminder data set.
 

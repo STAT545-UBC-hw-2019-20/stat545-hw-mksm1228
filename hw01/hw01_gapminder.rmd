@@ -44,7 +44,7 @@ min <- min(gapminder$year)
 max <- max(gapminder$year)
 median <- median(gapminder$year)
 mean <- mean(gapminder$year)
-print(paste("The lowest year is", min, "and the highest year is", max, ". The mean is", mean, "and the median is", median, trimws(".")))
+print(paste("The lowest year is", min, "and the highest year is", max, ". The mean is", mean, "and the median is", median, "."))
 ```
 
 

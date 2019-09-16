@@ -1,6 +1,6 @@
 # **Martin Keung's STAT545A Homework Repository**
 
-**Hello visitor! In this repository you will find out more about:**
+**Hello visitor :alien:! In this README.md file you will find out more about:**
 
 1.  What is this repository?
 2.  How to navigate this repository?
@@ -20,7 +20,7 @@ This repository contains Martin Keung's homework assignments for STAT545A, a dat
 
 ---------------------------------------------------------------------
 
-This repository will have folders corresponding to each assignment. To view the contents of this repository onto your computer, please use the link below. 
+This repository will have folders corresponding to each assignment. To view the contents of this repository, please use the link below. 
 
 > https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228.git
 

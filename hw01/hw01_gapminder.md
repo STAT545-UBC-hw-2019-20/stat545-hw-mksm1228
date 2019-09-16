@@ -7,7 +7,7 @@ output:
     toc_float: true
     keep_md: true
 ---
-##### This is an excerpt of Gapminder data on life expectancy, GDP per capita, and population by country from 1952 to 2007.
+##### This is an excerpt of Gapminder data on life expectancy, GDP per capita, and population by country in starting from 1952 to 2007.
 
 
 --------------------------------------------------------------------------
@@ -15,14 +15,14 @@ output:
 ### **How many rows and variables does the gapminder data set contain?**
 
 ```
-## [1] "This dataset has 1704 rows and 6 columns."
+## [1] "This dataset has 1704 rows and 6 variables."
 ```
 ### **What are the names of the variables?**
 
 ```
 ## [1] "country"   "continent" "year"      "lifeExp"   "pop"       "gdpPercap"
 ```
-### **Which countries does this dataset contain?**
+### **Which countries does this data set contain?**
 
 ```
 ##   [1] Afghanistan              Albania                 
@@ -99,7 +99,7 @@ output:
 ## 142 Levels: Afghanistan Albania Algeria Angola Argentina ... Zimbabwe
 ```
 
-### **Which continents does this dataset contain?**
+### **Which continents does this data set contain?**
 
 ```
 ## [1] Asia     Europe   Africa   Americas Oceania 
@@ -107,7 +107,7 @@ output:
 ```
 
 
-### **What is the lowest and highest year this dataset contains? What is the mean and median?**
+### **What is the lowest and highest year this data set contains? What is the mean and median?**
 
 ```
 ## [1] "The lowest year is 1952 and the highest year is 2007 . The mean is 1979.5 and the median is 1979.5 ."
@@ -154,5 +154,6 @@ output:
 ## 
 ```
 
+### **Conclusion**
 This concludes my exploration of the gapminder data set.
 

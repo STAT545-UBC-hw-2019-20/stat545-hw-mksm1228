@@ -7,10 +7,10 @@ output:
     toc_float: true
     keep_md: true
 ---
-##### This is an excerpt of Gapminder data on life expectancy, GDP per capita, and population by country from 1952 to 2007.
+##### This is an excerpt of Gapminder data on life expectancy, GDP per capita, and population by country in starting from 1952 to 2007.
 ```{r, message=FALSE ,warning=FALSE, echo=FALSE}
 library(gapminder)
-library(tibble)
+
 ```
 
 --------------------------------------------------------------------------
@@ -19,26 +19,26 @@ library(tibble)
 ```{r, warning=FALSE, echo=FALSE}
 row <- nrow(gapminder)
 col <- ncol(gapminder)
-print(paste("This dataset has", row, "rows and", col, "columns."))
+print(paste("This dataset has", row, "rows and", col, "variables."))
 
 ```
 ### **What are the names of the variables?**
 ```{r, warning=FALSE, echo=FALSE}
 names(gapminder)
 ```
-### **Which countries does this dataset contain?**
+### **Which countries does this data set contain?**
 ```{r, warning=FALSE, echo=FALSE}
 unique(gapminder$country)
 ```
 
-### **Which continents does this dataset contain?**
+### **Which continents does this data set contain?**
 ```{r, warning=FALSE, echo=FALSE}
 unique(gapminder$continent)
 
 ```
 
 
-### **What is the lowest and highest year this dataset contains? What is the mean and median?**
+### **What is the lowest and highest year this data set contains? What is the mean and median?**
 ```{r, warning=FALSE, echo=FALSE}
 min <- min(gapminder$year)
 max <- max(gapminder$year)
@@ -77,6 +77,7 @@ median <- median(gapminder$gdpPercap)
 mean <- mean(gapminder$gdpPercap)
 print(paste("The lowest GDP per capita is", min, "and the highest GDP per capita is", max, ". The mean is", mean, "and the median is", median, "."))
 
+
 ```
 
 ### **Summary of the gapminder data set**
@@ -85,6 +86,6 @@ summary(gapminder)
 
 ```
 
-### **Conclusion**
+### **Ending Remarks**
 This concludes my exploration of the gapminder data set.
 

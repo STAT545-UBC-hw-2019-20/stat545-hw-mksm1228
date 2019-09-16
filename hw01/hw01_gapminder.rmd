@@ -85,5 +85,6 @@ summary(gapminder)
 
 ```
 
+### **Conclusion**
 This concludes my exploration of the gapminder data set.
 

@@ -1,5 +1,5 @@
 ---
-title: "**hw01_gapminder**"
+title: "**Gapminder Exploration**"
 output: 
   github_document:
     theme: cerulean

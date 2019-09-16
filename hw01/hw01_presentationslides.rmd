@@ -6,6 +6,8 @@ output:
   ioslides_presentation:
     widescreen: true
     smaller: true
+    incremental: true
+    
   
 ---
 
@@ -18,10 +20,12 @@ library(gapminder)
 
 ```{r, message=FALSE ,warning=FALSE, echo=FALSE}
 library(gapminder)
-library(tibble)
+
 ```
 
 ## **The following presentation will cover the following points:**
+
+
 - How many rows and variables does the gapminder data set contain?
 - What are the names of the variables?
 - What is the lowest and highest life expectancy? What is the mean and median?
@@ -33,7 +37,7 @@ library(tibble)
 ```{r, warning=FALSE, echo=FALSE}
 row <- nrow(gapminder)
 col <- ncol(gapminder)
-print(paste("This dataset has", row, "rows and", col, "columns."))
+print(paste("This dataset has", row, "rows and", col, "variables."))
 
 ```
 
@@ -82,7 +86,7 @@ max <- max(gapminder$gdpPercap)
 median <- median(gapminder$gdpPercap)
 mean <- mean(gapminder$gdpPercap)
 print(paste("The lowest GDP per capita is", min, "and the highest GDP per capita is", max,".")) 
-print(paste("The mean is", mean, "and the median is", median, x))
+print(paste("The mean is", mean, "and the median is", median, "."))
 
 ```
 
@@ -91,5 +95,6 @@ print(paste("The mean is", mean, "and the median is", median, x))
 summary(gapminder)
 ```
 
-## **Conclusion**
-This concludes my analysis of the gapminder data set.
+## **Ending Remarks**
+- This concludes my analysis of the gapminder data set.
+- The only functions in this presentations used were the ones taught from the class meetings.

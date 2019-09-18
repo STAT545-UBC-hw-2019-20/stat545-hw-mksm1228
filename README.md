@@ -20,12 +20,12 @@ This repository contains Martin Keung's homework assignments for STAT545A, a dat
 
 ---------------------------------------------------------------------
 
-This repository will contain folders labelled as "hw" plus the corresponding assignment number. For example, the files for assignment 1 will be in a folder labelled as "hw01" To view the contents of this repository, please use the link below. 
+This repository will contain folders labelled as "hw" plus the corresponding assignment number. For example, the files for assignment 1 will be in a folder labelled as "hw01" To view the contents of this repository, please click the link below. 
 
 > https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228.git
 
-As of September 17, 2019, this repository only contains:
-- [x] Assignment 1 
+As of September 17, 2019, this repository contains the following:
+- [x] Assignment 1 files
 - [x] README.md
 
 Click here to access the files for [Assignment 1.](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01)

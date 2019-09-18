@@ -4,15 +4,19 @@ output:
   html_document:
     theme: cerulean
     toc: true
-    toc_float: true
     keep_md: true
 ---
-##### This is an excerpt of Gapminder data on life expectancy, GDP per capita, and population by country in starting from 1952 to 2007.
+### **Introduction**
+
+-----------------------
+
+##### I performed an exploratory data analysis on the Gapminder data set using the functions I learned from class meetings 2 and 3. I also set echo = FALSE for all the code chunks to prevent the code, but not the results from appearing in the finished file. 
+
 
 
 --------------------------------------------------------------------------
 
-### **How many rows and variables does the gapminder data set contain?**
+### **How many rows and variables does this data set contain?**
 
 ```
 ## [1] "This dataset has 1704 rows and 6 variables."
@@ -107,10 +111,10 @@ output:
 ```
 
 
-### **What is the lowest and highest year this data set contains? What is the mean and median?**
+### **What is the smallest and largest year this data set contains? What is the mean and median?**
 
 ```
-## [1] "The lowest year is 1952 and the highest year is 2007 . The mean is 1979.5 and the median is 1979.5 ."
+## [1] "The smallest year is 1952 and the largest year is 2007 . The mean is 1979.5 and the median is 1979.5 ."
 ```
 
 
@@ -120,10 +124,10 @@ output:
 ## [1] "The lowest life expectancy is 23.599 and the highest life expectancy is 82.603 years. The mean is 59.4744393661972 and the median is 60.7125 ."
 ```
 
-### **What is the lowest and highest population? What is the mean and median?**
+### **What is the smallest and largest population? What is the mean and median?**
 
 ```
-## [1] "The lowest population is 60011 and the highest population is 1318683096 . The mean is 29601212.3245305 and the median is 7023595.5 ."
+## [1] "The smallest population is 60011 and the largest population is 1318683096 . The mean is 29601212.3245305 and the median is 7023595.5 ."
 ```
 
 
@@ -133,7 +137,7 @@ output:
 ## [1] "The lowest GDP per capita is 241.1658765 and the highest GDP per capita is 113523.1329 . The mean is 7215.32708121215 and the median is 3531.8469885 ."
 ```
 
-### **Summary of the gapminder data set**
+### **Summary of the Gapminder data set**
 
 ```
 ##         country        continent        year         lifeExp     
@@ -155,5 +159,5 @@ output:
 ```
 
 ### **Ending Remarks**
-This concludes my exploration of the gapminder data set.
+This concludes my exploratory data analysis of the Gapminder data set.
 

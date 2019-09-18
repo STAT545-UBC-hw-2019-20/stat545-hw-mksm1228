@@ -1,13 +1,17 @@
 ---
 title: "**Gapminder Exploration**"
 output: 
-  html_document:
+  github_document:
     theme: cerulean
     toc: true
-    toc_float: true
     keep_md: true
 ---
-##### This is an excerpt of Gapminder data on life expectancy, GDP per capita, and population by country in starting from 1952 to 2007.
+### **Introduction**
+
+-----------------------
+
+##### I performed an exploratory data analysis on the Gapminder data set using the functions I learned from class meetings 2 and 3. I also set echo = FALSE for all the code chunks to prevent the code, but not the results from appearing in the finished file. Finally, I tried using the paste function to concatenate the output of the functions with some supporting text. 
+
 ```{r, message=FALSE ,warning=FALSE, echo=FALSE}
 library(gapminder)
 
@@ -15,41 +19,39 @@ library(gapminder)
 
 --------------------------------------------------------------------------
 
-### **How many rows and variables does the gapminder data set contain?**
-```{r, warning=FALSE, echo=FALSE}
+### **How many rows and variables does this data set contain?**
+```{r, message=FALSE, warning=FALSE, echo=FALSE} 
 row <- nrow(gapminder)
 col <- ncol(gapminder)
 print(paste("This dataset has", row, "rows and", col, "variables."))
-
 ```
 ### **What are the names of the variables?**
-```{r, warning=FALSE, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 names(gapminder)
 ```
 ### **Which countries does this data set contain?**
-```{r, warning=FALSE, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 unique(gapminder$country)
 ```
 
 ### **Which continents does this data set contain?**
-```{r, warning=FALSE, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 unique(gapminder$continent)
-
 ```
 
 
-### **What is the lowest and highest year this data set contains? What is the mean and median?**
-```{r, warning=FALSE, echo=FALSE}
+### **What is the smallest and largest year this data set contains? What is the mean and median?**
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 min <- min(gapminder$year)
 max <- max(gapminder$year)
 median <- median(gapminder$year)
 mean <- mean(gapminder$year)
-print(paste("The lowest year is", min, "and the highest year is", max, ". The mean is", mean, "and the median is", median, "."))
+print(paste("The smallest year is", min, "and the largest year is", max, ". The mean is", mean, "and the median is", median, "."))
 ```
 
 
 ### **What is the lowest and highest life expectancy? What is the mean and median?**
-```{r, warning=FALSE, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 min <- min(gapminder$lifeExp)
 max <- max(gapminder$lifeExp)
 median <- median(gapminder$lifeExp)
@@ -58,19 +60,19 @@ print(paste("The lowest life expectancy is", min, "and the highest life expectan
 
 ```
 
-### **What is the lowest and highest population? What is the mean and median?**
-```{r, warning=FALSE, echo=FALSE}
+### **What is the smallest and largest population? What is the mean and median?**
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 min <- min(gapminder$pop)
 max <- max(gapminder$pop)
 median <- median(gapminder$pop)
 mean <- mean(gapminder$pop)
-print(paste("The lowest population is", min, "and the highest population is", max, ". The mean is", mean, "and the median is", median,"."))
+print(paste("The smallest population is", min, "and the largest population is", max, ". The mean is", mean, "and the median is", median, "."))
 
 ```
 
 
 ### **What is the lowest and highest GDP per capita? What is the mean and median?**
-```{r, warning=FALSE, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 min <- min(gapminder$gdpPercap)
 max <- max(gapminder$gdpPercap)
 median <- median(gapminder$gdpPercap)
@@ -80,12 +82,12 @@ print(paste("The lowest GDP per capita is", min, "and the highest GDP per capita
 
 ```
 
-### **Summary of the gapminder data set**
+### **Summary of the Gapminder data set**
 ```{r, warning=FALSE, echo=FALSE}
 summary(gapminder)
 
 ```
 
 ### **Ending Remarks**
-This concludes my exploration of the gapminder data set.
+This concludes my exploratory data analysis of the Gapminder data set.
 

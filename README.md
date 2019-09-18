@@ -6,13 +6,19 @@
 2.  How to navigate this repository?
 3.  The author :boy:
 
+Below is a table of all the authors of this repository should you wish to contact one of us. 
 
+Name | Github Username
+-----|----------------
+Martin Keung | @mksm1228
+Dr. Vincenzo Coia | @vincenzocoia
+Dr. Firas Moosvi | @firasm
 
 ### **What is this repository?**
 
 ---------------------------------
 
-This repository contains Martin Keung's homework assignments for STAT545A, a data analysis course, taught by Dr. Vincenzo Coia and Dr. Firas Moosvi. This course runs from September 03, 2019 to October 17, 2019. This README.md will be updated when changes to the repository are made. 
+This repository contains Martin Keung's homework assignments for STAT545A, a data analysis course, taught by Dr. Vincenzo Coia (@vincenzocoia) and Dr. Firas Moosvi (@firasm). This course runs from September 03, 2019 to October 17, 2019. This README.md will be updated when changes to the repository are made. 
 
 
 
@@ -20,13 +26,16 @@ This repository contains Martin Keung's homework assignments for STAT545A, a dat
 
 ---------------------------------------------------------------------
 
-This repository will contain folders labelled as "hw" plus the corresponding assignment number. For example, the files for assignment 1 will be in a folder labelled as "hw01" To view the contents of this repository, please click the link below. 
+This repository will contain folders labelled as "hw" plus the corresponding assignment number. For example, the files for assignment 1 will be in a folder labelled as "hw01" To view the contents of this repository, please use the code below. 
 
-> https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228.git
+```
+git clone https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228.git
+```
 
 As of September 17, 2019, this repository contains the following:
-- [x] Assignment 1 files
 - [x] README.md
+- [x] Assignment 1
+- [ ] Assignment 2
 
 Click here to access the files for [Assignment 1.](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01)
 

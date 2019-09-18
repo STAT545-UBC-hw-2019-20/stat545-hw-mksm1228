@@ -10,7 +10,7 @@ output:
 
 -----------------------
 
-##### I performed an exploratory data analysis on the Gapminder data set using the functions I learned from class meetings 2 and 3. I also set echo = FALSE for all the code chunks to prevent the code, but not the results from appearing in the finished file. 
+##### I performed an exploratory data analysis on the Gapminder data set using the functions I learned from class meetings 2 and 3. I also set echo = FALSE for all the code chunks to prevent the code, but not the results from appearing in the finished file. Finally, I tried using the paste function to concatenate the output of the functions with some supporting text. 
 
 
 
@@ -111,10 +111,10 @@ output:
 ```
 
 
-### **What is the smallest and largest year this data set contains? What is the mean and median?**
+### **What is the earliest and latest year this data set contains? What is the mean and median?**
 
 ```
-## [1] "The smallest year is 1952 and the largest year is 2007 . The mean is 1979.5 and the median is 1979.5 ."
+## [1] "The earliest year is 1952 and the latest year is 2007 . The mean is 1979.5 and the median is 1979.5 ."
 ```
 
 

@@ -23,7 +23,7 @@ library(gapminder)
 ```{r, message=FALSE, warning=FALSE, echo=FALSE} 
 row <- nrow(gapminder)
 col <- ncol(gapminder)
-print(paste("This dataset has", row, "rows and", col, "variables."))
+print(paste("This data set has", row, "rows and", col, "variables."))
 ```
 ### **What are the names of the variables?**
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
@@ -40,13 +40,13 @@ unique(gapminder$continent)
 ```
 
 
-### **What is the smallest and largest year this data set contains? What is the mean and median?**
+### **What is the earliest and latest year this data set contains? What is the mean and median?**
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 min <- min(gapminder$year)
 max <- max(gapminder$year)
 median <- median(gapminder$year)
 mean <- mean(gapminder$year)
-print(paste("The smallest year is", min, "and the largest year is", max, ". The mean is", mean, "and the median is", median, "."))
+print(paste("The earliest year is", min, "and the latest year is", max, ". The mean is", mean, "and the median is", median, "."))
 ```
 
 

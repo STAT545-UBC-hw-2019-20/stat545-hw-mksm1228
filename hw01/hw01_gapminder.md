@@ -19,7 +19,7 @@ output:
 ### **How many rows and variables does this data set contain?**
 
 ```
-## [1] "This dataset has 1704 rows and 6 variables."
+## [1] "This data set has 1704 rows and 6 variables."
 ```
 ### **What are the names of the variables?**
 

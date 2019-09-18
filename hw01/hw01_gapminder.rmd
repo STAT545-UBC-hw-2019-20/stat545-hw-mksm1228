@@ -57,7 +57,6 @@ max <- max(gapminder$lifeExp)
 median <- median(gapminder$lifeExp)
 mean <- mean(gapminder$lifeExp)
 print(paste("The lowest life expectancy is", min, "and the highest life expectancy is", max, "years. The mean is", mean, "and the median is", median, "."))
-
 ```
 
 ### **What is the smallest and largest population? What is the mean and median?**
@@ -67,7 +66,6 @@ max <- max(gapminder$pop)
 median <- median(gapminder$pop)
 mean <- mean(gapminder$pop)
 print(paste("The smallest population is", min, "and the largest population is", max, ". The mean is", mean, "and the median is", median, "."))
-
 ```
 
 
@@ -78,14 +76,11 @@ max <- max(gapminder$gdpPercap)
 median <- median(gapminder$gdpPercap)
 mean <- mean(gapminder$gdpPercap)
 print(paste("The lowest GDP per capita is", min, "and the highest GDP per capita is", max, ". The mean is", mean, "and the median is", median, "."))
-
-
 ```
 
 ### **Summary of the Gapminder data set**
 ```{r, warning=FALSE, echo=FALSE}
 summary(gapminder)
-
 ```
 
 ### **Ending Remarks**

@@ -1,7 +1,7 @@
 ---
 title: "Gapminder Exploration"
 author: "Martin Keung"
-date: "15/09/2019"
+date: "17/09/2019"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -11,27 +11,23 @@ output:
   
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
-```{r}
-library(gapminder)
-```
-
-```{r, message=FALSE ,warning=FALSE, echo=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 library(gapminder)
 
 ```
 
-## **The following presentation will cover the following points:**
+
+
+## **This presentation will cover the following points:**
 
 
 - How many rows and variables does the gapminder data set contain?
 - What are the names of the variables?
+- What is the earliest and latest year this dataset contains? What is the mean and median?
 - What is the lowest and highest life expectancy? What is the mean and median?
-- What is the lowest and highest year this dataset contains? What is the mean and median?
-- What is the lowest and highest population? What is the mean and median?
+- What is the smallest and largest population? What is the mean and median?
 - What is the lowest and highest GDP per capita? What is the mean and median?
+- Summary of the Gapminder data set 
 
 ## **How many rows and variables does the gapminder data set contain?**
 ```{r, warning=FALSE, echo=FALSE}
@@ -47,13 +43,14 @@ names(gapminder)
 ```
 
 
-## **What is the lowest and highest year this dataset contains? What is the mean and median?**
+## **What is the earliest and latest year this dataset contains? What is the mean and median?**
 ```{r, warning=FALSE, echo=FALSE}
 min <- min(gapminder$year)
 max <- max(gapminder$year)
 median <- median(gapminder$year)
 mean <- mean(gapminder$year)
-print(paste("The lowest year is", min, "and the highest year is", max, ". The mean is", mean, "and the median is", median, "."))
+print(paste("The earliest year is", min, "and the latest year is", max, ". The mean is", mean, "and the median is", median, "."))
+
 ```
 
 ## **What is the lowest and highest life expectancy? What is the mean and median?**
@@ -67,13 +64,13 @@ print(paste("The mean is", mean, "and the median is", median, "."))
 
 ```
 
-## **What is the lowest and highest population? What is the mean and median?**
+## **What is the smallest and largest population? What is the mean and median?**
 ```{r, warning=FALSE, echo=FALSE}
 min <- min(gapminder$pop)
 max <- max(gapminder$pop)
 median <- median(gapminder$pop)
 mean <- mean(gapminder$pop)
-print(paste("The lowest population is", min, "and the highest population is", max, ".")) 
+print(paste("The smallest population is", min, "and the largest population is", max, ".")) 
 print(paste("The mean is", mean, "and the median is", median,"."))
 
 ```
@@ -90,11 +87,12 @@ print(paste("The mean is", mean, "and the median is", median, "."))
 
 ```
 
-## **Summary of the gapminder data set**
+## **Summary of the Gapminder data set**
 ```{r, warning=FALSE, echo=FALSE}
 summary(gapminder)
+
 ```
 
 ## **Ending Remarks**
-- This concludes my analysis of the gapminder data set.
-- The only functions in this presentations used were the ones taught from the class meetings.
+- This concludes my analysis of the Gapminder data set.
+- The only functions in this presentations used were the ones taught from the class meetings 2 and 3.

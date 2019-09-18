@@ -36,6 +36,12 @@ As of September 17, 2019, this repository contains the following:
 - [x] README.md
 - [x] Assignment 1
 - [ ] Assignment 2
+- [ ] Assignment 3
+- [ ] Assignment 4
+- [ ] Assignment 5
+- [ ] Assignment 6
+- [ ] Assignment 7
+
 
 Click here to access the files for [Assignment 1.](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01)
 

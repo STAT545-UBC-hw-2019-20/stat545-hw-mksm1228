@@ -1,12 +1,11 @@
 ---
 title: "hw02_gapminder"
 author: "Martin"
-date: "20/09/2019"
 output: 
   github_document:
     keep_md: true 
-editor_options: 
-  chunk_output_type: inline
+    theme: cerulean
+
 ---
 
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
@@ -21,17 +20,23 @@ library(kableExtra)
 
 ```
 
-# Exercise 1.1
+# Exercise 1.1 - Selected Countries in 1970s
+
+-------------------------------------------------
+
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
 gapminder %>%
  filter(year >= 1970 & year <= 1979, 
    country == "Canada" | country == "Brazil" | country == "Japan")%>%
-  kable(., format = "html", caption = "Gapminder Data for Canada, Brazil, and Japan")%>%
+  kable(., format = "html", caption = "Gapminder Data for Brazil, Canada, and Japan")%>%
   kable_styling()
 
 ```
 
-# Exercise 1.2 
+# Exercise 1.2 - Selected Countries and GDP Per Capita
+
+-------------------------------------------------
+
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
 gapminder %>%
   filter(year >= 1970 & year <= 1979, 
@@ -44,7 +49,10 @@ gapminder %>%
 
 ```
 
-# Exercise 1.3 
+# Exercise 1.3 - Drop in Life Expectancy
+
+-------------------------------------------------
+
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
 loss_of_lifeExp <- gapminder %>%
                       mutate(increaseinlifeExp = lifeExp - lag(lifeExp)) %>%
@@ -58,7 +66,10 @@ datatable(loss_of_lifeExp)
 
 ```
 
-# Exercise 1.4
+# Exercise 1.4 - Max GDP Per Capita for Each Country
+
+-------------------------------------------------
+
 ```{r load packages, warning=FALSE, echo=FALSE, message=FALSE}
 maxgdppercap_for_each_country <- gapminder %>% 
                                     group_by(country) %>%
@@ -68,7 +79,10 @@ datatable(maxgdppercap_for_each_country)
 ```
 
 
-# Exercise 1.5 
+# Exercise 1.5 - Canada Life Expectancy vs GDP Per Capita
+
+-------------------------------------------------
+
 ```{r, warning=FALSE, echo=FALSE}
 gapminder %>%
   filter(country == "Canada") %>%
@@ -81,6 +95,9 @@ gapminder %>%
 ```
 
 # Exercise 2: Exploring a Quantitative Variable
+
+-------------------------------------------------
+
 ```{r, warning=FALSE, echo=FALSE}
 summaryofpop <-gapminder %>%
   group_by(country) %>%
@@ -89,7 +106,11 @@ summaryofpop <-gapminder %>%
 
 datatable(summaryofpop)
 ```
+
 # Exercise 2: Exploring Categorical Variable
+
+-------------------------------------------------
+
 ```{r, warning=FALSE, echo=FALSE}
 
 gapminder %>%
@@ -106,26 +127,34 @@ gapminder %>%
 
 
 # Exercise 3: Scatterplot
+
+-------------------------------------------------
+
 ```{r, warning=FALSE, echo=FALSE}
 mtcars %>%
   ggplot(., aes(disp, mpg))+
   geom_point(color = "red")+
-  ggtitle("Displacement vs MPG")+
+  ggtitle("Displacement vs MPG from mtcars Data Set")+
   xlab("Displacement(cu.in)")+
-  ylab("Miles Per Gallon (MPG)(")+
+  ylab("Miles Per Gallon (MPG)")+
   theme(plot.title = element_text(face = "bold"))+
   theme_bw()
   
 
 ```
+
+
 # Exercise 3: Bar Graph
+
+-------------------------------------------------
+
 ```{r, warning=FALSE, echo=FALSE}
 mtcars %>%
   group_by(gear) %>%
   summarize(n = n()) %>%
   ggplot(., aes(gear, n))+
   geom_col(fill = "dark green")+
-  ggtitle("Counts of Each Gear")+
+  ggtitle("Counts of Each Gear Level")+
   xlab("Gear Level")+
   ylab("Count")+
   theme(plot.title = element_text(face = "bold"))+
@@ -136,21 +165,34 @@ mtcars %>%
 
 
 # Recycling
-```{r, warning=FALSE, echo=FALSE}
-filter(gapminder, country == c("Rwanda", "Afghanistan"))
-```
-The result produced was not what the author intended. Instead of filtering all the rows with Rwanda and Afghanistan, they only pulled out 12 rows. 6 rows for Afghanistan and 6 rows for Rwanda. What is happening here is that R is looking at the vector "country" and recycling the conditions, "Rwanda" and then "Afghanistan." First, gapminder contains data from 1952 to 2007 in intervals of 5 (This can be verified by looking at all the years in the gapminder data set, code below). Since the first condition is "Rwanda", it first appears in 1952. Then, the second condition is Afghanistan, and this appears next in 1957. It does not look at Afghanistan in 1952 because the countries are sorted alphabetically from A-Z. Since "Rwanda" is the first condition, R will look for when "Rwanda" first appears, which is in 1952. The next time "Afghanistan" appears is in 1957. These two conditions are recycled over and over again until all the rows containing Afghanistan and Rwanda is printed. The final row printed is "Afghanistan" in 2007 because if R tries to recycle "Rwanda" and "Afghanistan" again, it would only be able to output "Rwanda" in 2007 but nothing else for "Afghanistan" since there is no more data after 2007. 
 
-```{r}
+-------------------------------------------------
+
+```{r, warning=FALSE}
+filter(gapminder, country == c("Rwanda", "Afghanistan")) %>%
+  kable(., format = "html", caption = "Gapminder Data for Rwanda and Afghanistan")%>%
+  kable_styling()
+```
+
+The result produced was not what the author intended. Instead of filtering all the rows with "Rwanda" and "Afghanistan", they only pulled out 12 rows. 6 rows for "Afghanistan" and 6 rows for "Rwanda". This is incorrect because if we look at the year column, we can see that it does not capture all the data. This can be verified by looking at the year data that gapminder contains (code below). We can see that it contains data from the year 1952 to 2007 in intervals of 5. Therefore, this shows that the code above does not capture all the data expected.
+
+```{r, warning=FALSE}
 unique(gapminder$year)
 ```
-```{r}
-unique(gapminder$country)
-```
+
+What is happening here is that R is looking at the vector "country" and recycling the conditions, "Rwanda" and then "Afghanistan." Since the first condition is "Rwanda", it first appears in 1952. Then, the second condition is Afghanistan, and this appears next in 1957. It does not look at Afghanistan in 1952 because the countries are sorted alphabetically from A-Z. Essentially, since "Rwanda" is the first condition, R will look for when "Rwanda" first appears, which is in 1952. The next time "Afghanistan" appears is in 1957. These two conditions are recycled over and over again until all the rows containing "Rwanda" and "Afghanistan" is printed. The final row printed is "Afghanistan" in 2007 because if R tries to recycle "Rwanda" and "Afghanistan" again, it would only be able to output "Rwanda" in 2007 but nothing else for "Afghanistan" since there is no more data after 2007. 
+
+
+
+# My Fix 
+
+----------------------
 
 To fix the code, here is one proposed solution which outputs 24 rows. This can be verified to be correct by looking at the year column to see if it starts in 1952 and jumps in intervals of 5 until 2007. 
 ```{r}
 gapminder %>%
-  filter(country == "Rwanda" | country == "Afghanistan")
+  filter(country == "Rwanda" | country == "Afghanistan")%>%
+  kable(., format = "html", caption = "Gapminder Data for Rwanda and Afghanistan")%>%
+  kable_styling()
 ```
 

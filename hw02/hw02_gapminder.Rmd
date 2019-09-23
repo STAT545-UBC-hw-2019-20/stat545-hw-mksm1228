@@ -1,0 +1,156 @@
+---
+title: "hw02_gapminder"
+author: "Martin"
+date: "20/09/2019"
+output: 
+  github_document:
+    keep_md: true 
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+library(gapminder)
+library(tidyverse)
+library(scales)
+library(tsibble)
+library(DT)
+library(knitr)
+library(kableExtra)
+
+
+```
+
+# Exercise 1.1
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+gapminder %>%
+ filter(year >= 1970 & year <= 1979, 
+   country == "Canada" | country == "Brazil" | country == "Japan")%>%
+  kable(., format = "html", caption = "Gapminder Data for Canada, Brazil, and Japan")%>%
+  kable_styling()
+
+```
+
+# Exercise 1.2 
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+gapminder %>%
+  filter(year >= 1970 & year <= 1979, 
+  country == "Canada" | country == "Brazil" | country == "Japan") %>%
+  select (country, year, gdpPercap) %>%
+  kable(., format = "html", caption = "GDP per Cap in the 1970s") %>%
+  kable_styling()
+
+  
+
+```
+
+# Exercise 1.3 
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+loss_of_lifeExp <- gapminder %>%
+                      mutate(increaseinlifeExp = lifeExp - lag(lifeExp)) %>%
+                      filter(increaseinlifeExp < 0) %>%
+                      select(country, year, lifeExp, increaseinlifeExp)%>%
+                      arrange(increaseinlifeExp)
+                      
+        
+
+datatable(loss_of_lifeExp)
+
+```
+
+# Exercise 1.4
+```{r load packages, warning=FALSE, echo=FALSE, message=FALSE}
+maxgdppercap_for_each_country <- gapminder %>% 
+                                    group_by(country) %>%
+                                    summarize(maxGdpPercap = max(gdpPercap))
+
+datatable(maxgdppercap_for_each_country)
+```
+
+
+# Exercise 1.5 
+```{r, warning=FALSE, echo=FALSE}
+gapminder %>%
+  filter(country == "Canada") %>%
+  ggplot(., aes(lifeExp, gdpPercap))+
+  geom_point(color = "purple")+
+  ggtitle("Life Expectancy vs GDP Per Capita in Canada")+
+  scale_y_log10("GDP per capita ($)", labels = scales::dollar_format())+
+  xlab("Life Expectancy (Years)")+
+  theme_bw()
+```
+
+# Exercise 2: Exploring a Quantitative Variable
+```{r, warning=FALSE, echo=FALSE}
+summaryofpop <-gapminder %>%
+  group_by(country) %>%
+  summarize(min_pop = min(pop), max_pop = max(pop), mean_pop = mean(pop), 
+                  median_pop= median(pop), sd_pop = sd(pop))
+
+datatable(summaryofpop)
+```
+# Exercise 2: Exploring Categorical Variable
+```{r, warning=FALSE, echo=FALSE}
+
+gapminder %>%
+  group_by(continent, country) %>%
+  summarize(n_countries = n_distinct(country))%>%
+  ggplot(., aes(continent, n_countries))+
+  geom_col(fill = "orange")+
+  ggtitle("Number of Countries in Each Continent")+
+  ylab("Country Count")+
+  xlab("Continent")+
+  theme_bw()
+  
+```
+
+
+# Exercise 3: Scatterplot
+```{r, warning=FALSE, echo=FALSE}
+mtcars %>%
+  ggplot(., aes(disp, mpg))+
+  geom_point(color = "red")+
+  ggtitle("Displacement vs MPG")+
+  xlab("Displacement(cu.in)")+
+  ylab("Miles Per Gallon (MPG)(")+
+  theme(plot.title = element_text(face = "bold"))+
+  theme_bw()
+  
+
+```
+# Exercise 3: Bar Graph
+```{r, warning=FALSE, echo=FALSE}
+mtcars %>%
+  group_by(gear) %>%
+  summarize(n = n()) %>%
+  ggplot(., aes(gear, n))+
+  geom_col(fill = "dark green")+
+  ggtitle("Counts of Each Gear")+
+  xlab("Gear Level")+
+  ylab("Count")+
+  theme(plot.title = element_text(face = "bold"))+
+  theme_bw()
+
+  
+```
+
+
+# Recycling
+```{r, warning=FALSE, echo=FALSE}
+filter(gapminder, country == c("Rwanda", "Afghanistan"))
+```
+The result produced was not what the author intended. Instead of filtering all the rows with Rwanda and Afghanistan, they only pulled out 12 rows. 6 rows for Afghanistan and 6 rows for Rwanda. What is happening here is that R is looking at the vector "country" and recycling the conditions, "Rwanda" and then "Afghanistan." First, gapminder contains data from 1952 to 2007 in intervals of 5 (This can be verified by looking at all the years in the gapminder data set, code below). Since the first condition is "Rwanda", it first appears in 1952. Then, the second condition is Afghanistan, and this appears next in 1957. It does not look at Afghanistan in 1952 because the countries are sorted alphabetically from A-Z. Since "Rwanda" is the first condition, R will look for when "Rwanda" first appears, which is in 1952. The next time "Afghanistan" appears is in 1957. These two conditions are recycled over and over again until all the rows containing Afghanistan and Rwanda is printed. The final row printed is "Afghanistan" in 2007 because if R tries to recycle "Rwanda" and "Afghanistan" again, it would only be able to output "Rwanda" in 2007 but nothing else for "Afghanistan" since there is no more data after 2007. 
+
+```{r}
+unique(gapminder$year)
+```
+```{r}
+unique(gapminder$country)
+```
+
+To fix the code, here is one proposed solution which outputs 24 rows. This can be verified to be correct by looking at the year column to see if it starts in 1952 and jumps in intervals of 5 until 2007. 
+```{r}
+gapminder %>%
+  filter(country == "Rwanda" | country == "Afghanistan")
+```
+

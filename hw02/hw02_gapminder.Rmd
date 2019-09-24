@@ -2,10 +2,10 @@
 title: "hw02_gapminder"
 author: "Martin"
 output: 
-  github_document:
+  html_document:
     keep_md: true 
     theme: cerulean
-
+    toc: true
 ---
 
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
@@ -16,8 +16,6 @@ library(tsibble)
 library(DT)
 library(knitr)
 library(kableExtra)
-
-
 ```
 
 # Exercise 1.1 - Selected Countries in 1970s
@@ -30,7 +28,6 @@ gapminder %>%
    country == "Canada" | country == "Brazil" | country == "Japan")%>%
   kable(., format = "html", caption = "Gapminder Data for Brazil, Canada, and Japan")%>%
   kable_styling()
-
 ```
 
 # Exercise 1.2 - Selected Countries and GDP Per Capita
@@ -41,12 +38,9 @@ gapminder %>%
 gapminder %>%
   filter(year >= 1970 & year <= 1979, 
   country == "Canada" | country == "Brazil" | country == "Japan") %>%
-  select (country, year, gdpPercap) %>%
-  kable(., format = "html", caption = "GDP per Cap in the 1970s") %>%
+  select (country, gdpPercap) %>%
+  kable(., format = "html", caption = "GDP per Capita in the 1970s") %>%
   kable_styling()
-
-  
-
 ```
 
 # Exercise 1.3 - Drop in Life Expectancy
@@ -54,16 +48,13 @@ gapminder %>%
 -------------------------------------------------
 
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
-loss_of_lifeExp <- gapminder %>%
-                      mutate(increaseinlifeExp = lifeExp - lag(lifeExp)) %>%
-                      filter(increaseinlifeExp < 0) %>%
-                      select(country, year, lifeExp, increaseinlifeExp)%>%
-                      arrange(increaseinlifeExp)
-                      
-        
-
-datatable(loss_of_lifeExp)
-
+gapminder %>%
+  group_by(country)%>%
+  arrange(year)%>%
+  mutate(increaseinlifeExp = lifeExp - lag(lifeExp)) %>%
+  arrange(increaseinlifeExp) %>%
+  filter(increaseinlifeExp < 0) %>%
+  DT::datatable()
 ```
 
 # Exercise 1.4 - Max GDP Per Capita for Each Country
@@ -71,11 +62,11 @@ datatable(loss_of_lifeExp)
 -------------------------------------------------
 
 ```{r load packages, warning=FALSE, echo=FALSE, message=FALSE}
-maxgdppercap_for_each_country <- gapminder %>% 
-                                    group_by(country) %>%
-                                    summarize(maxGdpPercap = max(gdpPercap))
-
-datatable(maxgdppercap_for_each_country)
+gapminder %>% 
+  group_by(country) %>%
+  summarize(maxGdpPercap = max(gdpPercap)) %>%
+  DT::datatable()
+    
 ```
 
 
@@ -89,7 +80,7 @@ gapminder %>%
   ggplot(., aes(lifeExp, gdpPercap))+
   geom_point(color = "purple")+
   ggtitle("Life Expectancy vs GDP Per Capita in Canada")+
-  scale_y_log10("GDP per capita ($)", labels = scales::dollar_format())+
+  scale_y_log10("GDP per capita (US$)", labels = scales::dollar_format())+
   xlab("Life Expectancy (Years)")+
   theme_bw()
 ```
@@ -99,12 +90,11 @@ gapminder %>%
 -------------------------------------------------
 
 ```{r, warning=FALSE, echo=FALSE}
-summaryofpop <-gapminder %>%
+gapminder %>%
   group_by(country) %>%
   summarize(min_pop = min(pop), max_pop = max(pop), mean_pop = mean(pop), 
-                  median_pop= median(pop), sd_pop = sd(pop))
-
-datatable(summaryofpop)
+            median_pop= median(pop), sd_pop = sd(pop)) %>%
+  DT::datatable()
 ```
 
 # Exercise 2: Exploring Categorical Variable
@@ -112,10 +102,9 @@ datatable(summaryofpop)
 -------------------------------------------------
 
 ```{r, warning=FALSE, echo=FALSE}
-
 gapminder %>%
   group_by(continent, country) %>%
-  summarize(n_countries = n_distinct(country))%>%
+  summarize(n_countries = n_distinct(country)) %>%
   ggplot(., aes(continent, n_countries))+
   geom_col(fill = "orange")+
   ggtitle("Number of Countries in Each Continent")+
@@ -123,6 +112,15 @@ gapminder %>%
   xlab("Continent")+
   theme_bw()
   
+```
+
+```{r, warning=FALSE, echo=FALSE}
+gapminder %>%
+  group_by(continent, country) %>%
+  summarize(n_countries = n_distinct(country)) %>%
+  tally(n_countries) %>%
+  kable(., format = "html", caption = "No. of Countries in Each Continent") %>%
+  kable_styling()
 ```
 
 
@@ -139,8 +137,6 @@ mtcars %>%
   ylab("Miles Per Gallon (MPG)")+
   theme(plot.title = element_text(face = "bold"))+
   theme_bw()
-  
-
 ```
 
 
@@ -159,8 +155,6 @@ mtcars %>%
   ylab("Count")+
   theme(plot.title = element_text(face = "bold"))+
   theme_bw()
-
-  
 ```
 
 
@@ -188,11 +182,10 @@ What is happening here is that R is looking at the vector "country" and recyclin
 
 ----------------------
 
-To fix the code, here is one proposed solution which outputs 24 rows. This can be verified to be correct by looking at the year column to see if it starts in 1952 and jumps in intervals of 5 until 2007. 
-```{r}
+To fix the code, here is one proposed solution which outputs 24 rows. This can be verified to be correct by looking at the year column to see if it starts in 1952 and jumps in intervals of 5 until 2007 for only "Rwanda" and "Afghanistan". 
+```{r, warning=FALSE}
 gapminder %>%
-  filter(country == "Rwanda" | country == "Afghanistan")%>%
-  kable(., format = "html", caption = "Gapminder Data for Rwanda and Afghanistan")%>%
-  kable_styling()
+  filter(country == "Rwanda" | country == "Afghanistan") %>%
+  DT::datatable()
 ```
 

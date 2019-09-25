@@ -24,13 +24,14 @@ library(kableExtra)
 
 ```{r, warning=FALSE, echo=FALSE, message=FALSE}
 gapminder %>%
- filter(year >= 1970 & year <= 1979, 
-   country == "Canada" | country == "Brazil" | country == "Japan")%>%
-  kable(., format = "html", caption = "Gapminder Data for Brazil, Canada, and Japan")%>%
+  filter(year >= 1970 & year <= 1979, 
+  country == "Canada" | country == "Brazil" | country == "Japan")%>%
+  kable(., format = "html", caption = "Gapminder Data for Brazil, 
+  Canada, and Japan")%>%
   kable_styling()
 ```
 
-# Exercise 1.2 - Selected Countries and GDP Per Capita
+# Exercise 1.2 - Selected Countries and GDP Per Capita in the 70s
 
 -------------------------------------------------
 
@@ -52,8 +53,8 @@ gapminder %>%
   group_by(country)%>%
   arrange(year)%>%
   mutate(increaseinlifeExp = lifeExp - lag(lifeExp)) %>%
-  arrange(increaseinlifeExp) %>%
   filter(increaseinlifeExp < 0) %>%
+  arrange(increaseinlifeExp) %>%
   DT::datatable()
 ```
 
@@ -61,12 +62,11 @@ gapminder %>%
 
 -------------------------------------------------
 
-```{r load packages, warning=FALSE, echo=FALSE, message=FALSE}
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
 gapminder %>% 
   group_by(country) %>%
-  summarize(maxGdpPercap = max(gdpPercap)) %>%
+  summarize(maxgdpPercap = max(gdpPercap)) %>%
   DT::datatable()
-    
 ```
 
 
@@ -80,24 +80,26 @@ gapminder %>%
   ggplot(., aes(lifeExp, gdpPercap))+
   geom_point(color = "purple")+
   ggtitle("Life Expectancy vs GDP Per Capita in Canada")+
-  scale_y_log10("GDP per capita (US$)", labels = scales::dollar_format())+
+  scale_y_log10("GDP per capita (US$)", labels = 
+  scales::dollar_format())+
   xlab("Life Expectancy (Years)")+
   theme_bw()
 ```
 
-# Exercise 2: Exploring a Quantitative Variable
+
+# Exercise 2: Exploring a Quantitative Variable (Population)
 
 -------------------------------------------------
 
 ```{r, warning=FALSE, echo=FALSE}
 gapminder %>%
   group_by(country) %>%
-  summarize(min_pop = min(pop), max_pop = max(pop), mean_pop = mean(pop), 
-            median_pop= median(pop), sd_pop = sd(pop)) %>%
+  summarize(min_pop = min(pop), max_pop = max(pop), mean_pop = 
+  mean(pop), median_pop= median(pop), sd_pop = sd(pop)) %>%
   DT::datatable()
 ```
 
-# Exercise 2: Exploring Categorical Variable
+# Exercise 2: Exploring a Categorical Variable (Continent)
 
 -------------------------------------------------
 
@@ -111,7 +113,6 @@ gapminder %>%
   ylab("Country Count")+
   xlab("Continent")+
   theme_bw()
-  
 ```
 
 ```{r, warning=FALSE, echo=FALSE}
@@ -119,12 +120,13 @@ gapminder %>%
   group_by(continent, country) %>%
   summarize(n_countries = n_distinct(country)) %>%
   tally(n_countries) %>%
-  kable(., format = "html", caption = "No. of Countries in Each Continent") %>%
+  kable(., format = "html", caption = "No. of Countries in Each 
+  Continent") %>%
   kable_styling()
 ```
 
 
-# Exercise 3: Scatterplot
+# Exercise 3: Scatterplot Using mtcars Data Set
 
 -------------------------------------------------
 
@@ -140,7 +142,7 @@ mtcars %>%
 ```
 
 
-# Exercise 3: Bar Graph
+# Exercise 3: Bar Graph Using mtcars Data Set
 
 -------------------------------------------------
 
@@ -158,6 +160,7 @@ mtcars %>%
 ```
 
 
+
 # Recycling
 
 -------------------------------------------------
@@ -168,21 +171,32 @@ filter(gapminder, country == c("Rwanda", "Afghanistan")) %>%
   kable_styling()
 ```
 
-The result produced was not what the author intended. Instead of filtering all the rows with "Rwanda" and "Afghanistan", they only pulled out 12 rows. 6 rows for "Afghanistan" and 6 rows for "Rwanda". This is incorrect because if we look at the year column, we can see that it does not capture all the data. This can be verified by looking at the year data that gapminder contains (code below). We can see that it contains data from the year 1952 to 2007 in intervals of 5. Therefore, this shows that the code above does not capture all the data expected.
+The result produced was not what the author intended. Instead of filtering all the rows with "Rwanda" and "Afghanistan", they only pulled out 12 rows. 6 rows for "Afghanistan" and 6 rows for "Rwanda". This is incorrect because if we look at the year column, we can see that it does not capture all the data. The gapminder data set contains data for each country from the year 1952 until 2007 in intervals of 5 and each country should have 12 observations (code below). We can see from the output of their code that it does not produce 12 rows for both "Afghanistan" and "Rwanda." In addition, it does not produce all the years correctly for both countries. For example, "Afghanistan" is missing the year 1952. Therefore, based on the number of rows printed and the missing data in the year column, the author's code is not outputting what they intended. 
 
 ```{r, warning=FALSE}
 unique(gapminder$year)
 ```
 
-What is happening here is that R is looking at the vector "country" and recycling the conditions, "Rwanda" and then "Afghanistan." Since the first condition is "Rwanda", it first appears in 1952. Then, the second condition is Afghanistan, and this appears next in 1957. It does not look at Afghanistan in 1952 because the countries are sorted alphabetically from A-Z. Essentially, since "Rwanda" is the first condition, R will look for when "Rwanda" first appears, which is in 1952. The next time "Afghanistan" appears is in 1957. These two conditions are recycled over and over again until all the rows containing "Rwanda" and "Afghanistan" is printed. The final row printed is "Afghanistan" in 2007 because if R tries to recycle "Rwanda" and "Afghanistan" again, it would only be able to output "Rwanda" in 2007 but nothing else for "Afghanistan" since there is no more data after 2007. 
+```{r, warning=FALSE}
+gapminder %>%
+  count(country)
+```
 
+
+What is happening here is that since the "==" operator is being used to test equality on vectors of unequal length, the smaller vector which is "Rwanda" and "Afghanistan," is being recycled until it is the same length as the country vector which happens to be about 1704 rows of data (code below).
+
+```{r, warning=FALSE}
+nrow(gapminder)
+```
+
+I suspect that R is returning all the **odd numbered rows** which happen to be the **even numbered years** for "Rwanda" and all the **even numbered rows** which happen to be the **odd numbered years** for "Afghanistan" which is why it only outputs 6 rows for both countries. A possible explanation for this is perhaps because "Rwanda" is in the "1" position, it is an odd number, and thus R looks for the first odd numbered row that contains "Rwanda." Then going with this thought, "Afghanistan" is in the "2" position and R looks for the first even numbered that contains "Afghanistan."
 
 
 # My Fix 
 
 ----------------------
 
-To fix the code, here is one proposed solution which outputs 24 rows. This can be verified to be correct by looking at the year column to see if it starts in 1952 and jumps in intervals of 5 until 2007 for only "Rwanda" and "Afghanistan". 
+To fix the code, here is one proposed solution which outputs 24 rows. 12 for "Afghanistan" and 12 for "Rwanda" from 1952 to 2007 in intervals of 5. 
 ```{r, warning=FALSE}
 gapminder %>%
   filter(country == "Rwanda" | country == "Afghanistan") %>%

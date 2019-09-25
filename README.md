@@ -32,10 +32,10 @@ This repository will contain folders labelled as "hw" plus the corresponding ass
 git clone https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228.git
 ```
 
-As of September 17, 2019, this repository contains the following files:
+As of September 24, 2019, this repository contains the following files:
 - [x] README.md
 - [x] Assignment 1
-- [ ] Assignment 2
+- [x] Assignment 2
 - [ ] Assignment 3
 - [ ] Assignment 4
 - [ ] Assignment 5
@@ -43,7 +43,7 @@ As of September 17, 2019, this repository contains the following files:
 - [ ] Assignment 7
 
 
-Click here to access the files for [Assignment 1.](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01)
+Click here to access the files for [Assignment 1,](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01), [Assignment 2](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw02)
 
 ### **About the author** :boy:
 

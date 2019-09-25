@@ -43,7 +43,7 @@ As of September 24, 2019, this repository contains the following files:
 - [ ] Assignment 7
 
 
-Click here to access the files for [Assignment 1,](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01), [Assignment 2](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw02)
+Click here to access the files for [Assignment 1](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01), [Assignment 2](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw02)
 
 ### **About the author** :boy:
 

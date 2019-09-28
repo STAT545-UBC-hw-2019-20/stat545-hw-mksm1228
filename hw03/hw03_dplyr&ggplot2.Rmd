@@ -1,0 +1,88 @@
+---
+title: "hw03_dplyr&ggplot2"
+author: "Martin"
+date: "9/28/2019"
+output: 
+  html_document:
+    css: two_columns.css
+    keep_md: true
+
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+library(gapminder)
+library(tidyverse)
+library(scales)
+library(tsibble)
+library(DT)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+```
+
+
+# Task Option 2 and 3: Maximum and Minimum of GDP Per Capita for All Continents and Spread of GDP Per Capita within the Continents 
+<div class="twoC">
+```{r results = 'asis', warning=FALSE, echo=FALSE}
+gapminder %>%
+  group_by(continent) %>%
+  summarize(Min = min(gdpPercap), Max = max(gdpPercap), 
+  Mean = mean(gdpPercap), SD = sd(gdpPercap)) %>%
+  kable(., format = "html", caption = "Min, Max, Mean and SD of GDP Per 
+  Capita for All Continents") %>%
+  kable_styling()
+```
+
+
+```{r, warning=FALSE, echo=FALSE}
+gapminder %>%
+  ggplot(., aes(continent, gdpPercap))+
+  geom_jitter(position = position_jitter(width = 0.1, height = 0), 
+  alpha = 0.15)+
+  stat_summary(fun.y = max, color = "red", geom = "point", size = 2)+
+  stat_summary(fun.y = min, color = "blue", geom = "point", size = 2)+
+  stat_summary(fun.y = mean, color = "orange", geom = "point", size = 2)+
+  scale_y_log10(labels = scales::dollar_format())+
+  xlab("Continent")+
+  ylab("GDP Per Capita (US$)")+
+  theme_bw()
+```
+
+</div>
+<div class="clearer"></div>
+ 
+# Task 4: Compute a Trimmed Mean of Life Expectancy for Different Years
+
+```{r, warning=FALSE, echo=FALSE}
+gapminder %>%
+  arrange(year) %>%
+  group_by(year) %>%
+  summarize(Mean = mean(lifeExp)) %>%
+  kable(., format = "html", caption = "Trimmed Mean of Life Expectancy for 
+  Different Years") %>%
+  kable_styling()
+
+```
+
+
+```{r, warning=FALSE, echo=FALSE}
+gapminder %>%
+  arrange(year) %>%
+  group_by(year) %>%
+  summarize(mean = mean(lifeExp)) %>%
+  ggplot(., aes(year, mean))+
+  geom_col(color = "black", fill = "dark green")+
+  xlab("Year")+
+  ylab("Mean Life Expectancy (Years)")+
+  theme_bw()
+
+```
+
+
+
+

@@ -18,7 +18,7 @@ output:
 <!-- Code derived from https://gist.github.com/jennybc/e9e9aba6ba18c72cec26#file-2015-03-02_plot-next-to-table-rmd -->
 
 <div class="twoC">
-###### **Task Option 2: Max and Min GDP Per Capita within the Continents**
+##### **Task Option 2: Max and Min GDP Per Capita within the Continents**
 
 ---------------------
 
@@ -66,7 +66,7 @@ output:
 </div>
 <div class="clearer"></div>
 
-The table and figure above shows the minimum and maximum GDP Per Capita within each continent from all the years recorded. Red represents the minimum GDP Per Capita. Blue represents the maximum GDP Per Capita. This graph shows that Africa has the smallest minimum GDP Per Capita compared to the other continents. On the other hand, Asia has the largest maximum GDP Per Capita compared to the other continents. 
+The table and figure above shows the minimum and maximum GDP Per Capita within each continent from all the years recorded. Red represents the minimum GDP Per Capita. Blue represents the maximum GDP Per Capita. This graph shows that Africa has the smallest minimum GDP Per Capita compared to the minimum GDP Per Capita of other other continents. In terms of maximum GDP Per Capita, Asia has the largest maximum GDP Per Capita compared to the other continents. 
 
 
 <div class = "twoC">
@@ -129,7 +129,7 @@ The table and figure above shows the minimum and maximum GDP Per Capita within e
 </div>
 <div class="clearer"></div>
 
-The table and figure above shows the spread of GDP Per Capita within each continent. From the figure we can see that Asia had the largest spread of GDP Per Capita. In contrast, Africa had the smallest spread of GPD Per Capita. 
+The table and figure above shows the spread of GDP Per Capita within each continent using a boxplot. GDP Per Capita is on a log10 scale. From the figure we can see that Asia had the largest spread of GDP Per Capita. In contrast, Africa had the smallest spread of GPD Per Capita. 
 
 <div class = "twoC">
 

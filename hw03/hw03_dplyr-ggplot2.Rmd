@@ -5,9 +5,20 @@ output:
     keep_md: true
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-
-
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+library(gapminder)
+library(tidyverse)
+library(scales)
+library(tsibble)
+library(DT)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+```
 
 <style type="text/css">
 .twoC {width: 100%}
@@ -22,8 +33,7 @@ output:
 
 ---------------------
 
-
-```r
+```{r, warning=FALSE}
 table1 <- gapminder %>%
             group_by(continent) %>%
             summarize(Min = min(gdpPercap), Max = max(gdpPercap)) %>%
@@ -33,8 +43,7 @@ table1 <- gapminder %>%
 ```
 <!-- Putting the table into a variable called table1 so we can print it out later side-by-side with the figure -->
 
-
-```r
+```{r, warning=FALSE}
 fig1 <- gapminder %>%
           group_by(continent) %>%
           summarize(Min = min(gdpPercap), Max = max(gdpPercap)) %>%
@@ -50,45 +59,10 @@ fig1 <- gapminder %>%
 <!-- Putting the figure into a variable called fig1 so we can print it out later side-by-side with the table -->
 
 <div class="twoC">
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<caption>Max and Min GDP Per Capita within the Continents</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> continent </th>
-   <th style="text-align:right;"> Min </th>
-   <th style="text-align:right;"> Max </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Africa </td>
-   <td style="text-align:right;"> 241.1659 </td>
-   <td style="text-align:right;"> 21951.21 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Americas </td>
-   <td style="text-align:right;"> 1201.6372 </td>
-   <td style="text-align:right;"> 42951.65 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Asia </td>
-   <td style="text-align:right;"> 331.0000 </td>
-   <td style="text-align:right;"> 113523.13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Europe </td>
-   <td style="text-align:right;"> 973.5332 </td>
-   <td style="text-align:right;"> 49357.19 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oceania </td>
-   <td style="text-align:right;"> 10039.5956 </td>
-   <td style="text-align:right;"> 34435.37 </td>
-  </tr>
-</tbody>
-</table>
-
-![](hw03_dplyr-ggplot2_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+```{r, echo=FALSE}
+table1
+fig1
+```
 </div>
 <div class="clearer"></div>
 <!-- Printing table 1 and figure 1 side-by-side -->
@@ -99,8 +73,7 @@ The table and figure above shows the minimum and maximum GDP Per Capita within e
 
 ---------------------
 
-
-```r
+```{r, warning=FALSE}
 table2 <- gapminder %>%
             group_by(continent) %>%
             summarize(median = median(gdpPercap), SD = sd(gdpPercap),  
@@ -111,8 +84,7 @@ table2 <- gapminder %>%
 ```
 <!-- Putting the table into a variable called table2 so we can print it out later side-by-side with the figure. Full_width compresses the columns together.-->
 
-
-```r
+```{r, warning=FALSE}
 fig2 <- gapminder %>%
           group_by(continent) %>%
           ggplot(., aes(continent, gdpPercap))+
@@ -126,57 +98,10 @@ fig2 <- gapminder %>%
 <!-- Putting the boxplot figure into a variable called fig2 so we can print it out later side-by-side with the table -->
 
 <div class = "twoC">
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>Spread of GDP Per Capita Within the Continents</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> continent </th>
-   <th style="text-align:right;"> median </th>
-   <th style="text-align:right;"> SD </th>
-   <th style="text-align:right;"> MedAbsdev </th>
-   <th style="text-align:right;"> InQuartRange </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Africa </td>
-   <td style="text-align:right;"> 1192.138 </td>
-   <td style="text-align:right;"> 2827.930 </td>
-   <td style="text-align:right;"> 775.3226 </td>
-   <td style="text-align:right;"> 1616.170 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Americas </td>
-   <td style="text-align:right;"> 5465.510 </td>
-   <td style="text-align:right;"> 6396.764 </td>
-   <td style="text-align:right;"> 3269.3325 </td>
-   <td style="text-align:right;"> 4402.431 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Asia </td>
-   <td style="text-align:right;"> 2646.787 </td>
-   <td style="text-align:right;"> 14045.373 </td>
-   <td style="text-align:right;"> 2820.8338 </td>
-   <td style="text-align:right;"> 7492.262 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Europe </td>
-   <td style="text-align:right;"> 12081.749 </td>
-   <td style="text-align:right;"> 9355.213 </td>
-   <td style="text-align:right;"> 8846.0506 </td>
-   <td style="text-align:right;"> 13248.301 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Oceania </td>
-   <td style="text-align:right;"> 17983.304 </td>
-   <td style="text-align:right;"> 6358.983 </td>
-   <td style="text-align:right;"> 6459.1033 </td>
-   <td style="text-align:right;"> 8072.258 </td>
-  </tr>
-</tbody>
-</table>
-
-![](hw03_dplyr-ggplot2_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+```{r, echo=FALSE}
+table2
+fig2
+```
 </div>
 <div class="clearer"></div>
 <!-- Printing table 2 and figure 2 side-by-side -->
@@ -189,8 +114,7 @@ The table and figure above shows the spread of GDP Per Capita within each contin
 
 ---------------------
 
-
-```r
+```{r, warning=FALSE}
 table3 <- gapminder %>%
             arrange(year) %>%
             group_by(year) %>%
@@ -198,11 +122,11 @@ table3 <- gapminder %>%
             kable(., format = "html", caption = 
             "Trimmed Mean of Life Expectancy for Different Years") %>%
             kable_styling()
+
 ```
 <!-- Putting the table into a variable called table3 so we can print it out later side-by-side with the figure. Trimming 0.2 of observations from each end.  -->
 
-
-```r
+```{r, warning=FALSE}
 fig3 <- gapminder %>%
           arrange(year) %>%
           group_by(year) %>%
@@ -217,67 +141,10 @@ fig3 <- gapminder %>%
 <!-- Putting the figure into a variable called fig3 so we can print it out later side-by-side with the table -->
 
 <div class = "twoC">
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<caption>Trimmed Mean of Life Expectancy for Different Years</caption>
- <thead>
-  <tr>
-   <th style="text-align:right;"> year </th>
-   <th style="text-align:right;"> Mean </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 1952 </td>
-   <td style="text-align:right;"> 47.74866 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1957 </td>
-   <td style="text-align:right;"> 50.64422 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1962 </td>
-   <td style="text-align:right;"> 53.12857 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1967 </td>
-   <td style="text-align:right;"> 55.63999 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1972 </td>
-   <td style="text-align:right;"> 58.12370 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1977 </td>
-   <td style="text-align:right;"> 60.38896 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1982 </td>
-   <td style="text-align:right;"> 62.47444 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1987 </td>
-   <td style="text-align:right;"> 64.48383 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1992 </td>
-   <td style="text-align:right;"> 65.89072 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 1997 </td>
-   <td style="text-align:right;"> 66.84437 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2002 </td>
-   <td style="text-align:right;"> 67.77385 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2007 </td>
-   <td style="text-align:right;"> 69.17224 </td>
-  </tr>
-</tbody>
-</table>
-
-![](hw03_dplyr-ggplot2_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+```{r, echo=FALSE}
+table3
+fig3
+```
 </div>
 <div class="clearer"></div>
 <!-- Printing table 3 and figure 3 side-by-side -->

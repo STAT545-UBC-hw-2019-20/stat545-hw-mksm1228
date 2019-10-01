@@ -1,13 +1,8 @@
 ---
 title: "hw03_dplyr&ggplot2"
-author: "Martin"
-date: "9/28/2019"
 output: 
   html_document:
-    css: two_columns.css
     keep_md: true
-
-
 ---
 
 ```{r setup, include=FALSE}
@@ -25,64 +20,113 @@ library(kableExtra)
 library(ggplot2)
 ```
 
+<style type="text/css">
+.twoC {width: 100%}
+.clearer {clear: both}
+.twoC .table {max-width: 10%; float: left}
+.twoC img {max-width: 45%; float: right}
+</style>
+<!-- Code derived from https://gist.github.com/jennybc/e9e9aba6ba18c72cec26#file-2015-03-02_plot-next-to-table-rmd -->
 
-# Task Option 2 and 3: Maximum and Minimum of GDP Per Capita for All Continents and Spread of GDP Per Capita within the Continents 
 <div class="twoC">
-```{r results = 'asis', warning=FALSE, echo=FALSE}
+###### **Task Option 2: Max and Min GDP Per Capita within the Continents**
+
+---------------------
+
+```{r, warning=FALSE, echo=FALSE}
 gapminder %>%
   group_by(continent) %>%
-  summarize(Min = min(gdpPercap), Max = max(gdpPercap), 
-  Mean = mean(gdpPercap), SD = sd(gdpPercap)) %>%
-  kable(., format = "html", caption = "Min, Max, Mean and SD of GDP Per 
-  Capita for All Continents") %>%
-  kable_styling()
+  summarize(Min = min(gdpPercap), Max = max(gdpPercap)) %>%
+  kable(., format = "html", caption = "Min and Max GDP Per Capita within the
+  Continents") %>%
+  kable_styling(full_width = F)
 ```
 
 
 ```{r, warning=FALSE, echo=FALSE}
 gapminder %>%
-  ggplot(., aes(continent, gdpPercap))+
-  geom_jitter(position = position_jitter(width = 0.1, height = 0), 
-  alpha = 0.15)+
-  stat_summary(fun.y = max, color = "red", geom = "point", size = 2)+
-  stat_summary(fun.y = min, color = "blue", geom = "point", size = 2)+
-  stat_summary(fun.y = mean, color = "orange", geom = "point", size = 2)+
+  group_by(continent) %>%
+  summarize(Min = min(gdpPercap), Max = max(gdpPercap)) %>%
+  ggplot(., aes(continent, Min))+
+  geom_point(color = "red", size = 5)+
+  geom_point(aes(continent, Max), color = "blue", size = 5)+
   scale_y_log10(labels = scales::dollar_format())+
-  xlab("Continent")+
   ylab("GDP Per Capita (US$)")+
+  xlab("Continents")+
+  ggtitle("Maximum and Minimum of GDP Per Capita for All Continents")+
   theme_bw()
 ```
-
 </div>
 <div class="clearer"></div>
- 
-# Task 4: Compute a Trimmed Mean of Life Expectancy for Different Years
+
+The table and figure above shows the minimum and maximum GDP Per Capita within each continent from all the years recorded. Red represents the minimum GDP Per Capita. Blue represents the maximum GDP Per Capita. This graph shows that Africa has the smallest minimum GDP Per Capita compared to the other continents. On the other hand, Asia has the largest maximum GDP Per Capita compared to the other continents. 
+
+
+<div class = "twoC">
+
+##### **Task Option 3: Spread of GDP Per Capita Within the Continents** 
+
+---------------------
+
+```{r, warning=FALSE, echo=FALSE}
+gapminder %>%
+  group_by(continent) %>%
+  summarize(median = median(gdpPercap), SD = sd(gdpPercap),  
+  MedAbsdev = mad(gdpPercap), InQuartRange = 
+  IQR(gdpPercap)) %>%
+  kable(., format = "html", caption = 
+  "Spread of GDP Per Capita Within the Continents")%>%
+  kable_styling(full_width = F)
+```
+
+```{r, warning=FALSE, echo=FALSE}
+gapminder %>%
+  group_by(continent) %>%
+  ggplot(., aes(continent, gdpPercap))+
+  geom_boxplot()+
+  scale_y_log10("GDP Per Capita (US$)", 
+  labels = scales::dollar_format())+
+  xlab("Continent")+
+  ggtitle("Spread of GDP Per Capita within the Continents")+
+  theme_bw()
+```
+</div>
+<div class="clearer"></div>
+
+The table and figure above shows the spread of GDP Per Capita within each continent. From the figure we can see that Asia had the largest spread of GDP Per Capita. In contrast, Africa had the smallest spread of GPD Per Capita. 
+
+<div class = "twoC">
+
+##### **Task 4: Compute a Trimmed Mean of Life Expectancy for Different Years**
+
+---------------------
 
 ```{r, warning=FALSE, echo=FALSE}
 gapminder %>%
   arrange(year) %>%
   group_by(year) %>%
-  summarize(Mean = mean(lifeExp)) %>%
-  kable(., format = "html", caption = "Trimmed Mean of Life Expectancy for 
-  Different Years") %>%
+  summarize(Mean = mean(lifeExp, trim = 0.2)) %>%
+  ungroup() %>%
+  kable(., format = "html", caption = "Trimmed Mean of Life Expectancy 
+  for Different Years") %>%
   kable_styling()
 
 ```
 
-
 ```{r, warning=FALSE, echo=FALSE}
 gapminder %>%
   arrange(year) %>%
   group_by(year) %>%
-  summarize(mean = mean(lifeExp)) %>%
+  summarize(mean = mean(lifeExp, trim = 0.2)) %>%
   ggplot(., aes(year, mean))+
-  geom_col(color = "black", fill = "dark green")+
+  geom_line(color = "dark green")+
   xlab("Year")+
-  ylab("Mean Life Expectancy (Years)")+
+  ylab("Trimmed Mean Life Expectancy (Years)")+
+  ggtitle("Trimme Mean Life Expectancy for Different Years")+
   theme_bw()
 
 ```
+</div>
+<div class="clearer"></div>
 
-
-
-
+The table and figure above shows a trimmed mean of life expectancy among countries in different years. I have a chosen a trim fraction of 0.2 (20%). From both the table and figure, we can see that as the years increase, the trimmed mean life expectancy also increases. 

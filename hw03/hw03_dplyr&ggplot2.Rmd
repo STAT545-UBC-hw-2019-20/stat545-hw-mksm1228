@@ -122,7 +122,7 @@ gapminder %>%
   geom_line(color = "dark green")+
   xlab("Year")+
   ylab("Trimmed Mean Life Expectancy (Years)")+
-  ggtitle("Trimmed Mean Life Expectancy for Different Years")+
+  ggtitle("Trimmed Mean Life (20%) Expectancy for Different Years")+
   theme_bw()
 
 ```

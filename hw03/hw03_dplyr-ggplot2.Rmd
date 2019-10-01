@@ -1,7 +1,7 @@
 ---
 title: "hw03_dplyr&ggplot2"
 output: 
-  html_document:
+  github_document:
     keep_md: true
 ---
 
@@ -41,7 +41,7 @@ table1 <- gapminder %>%
             "Max and Min GDP Per Capita within the Continents") %>%
             kable_styling()
 ```
-<!-- Putting the table into a variable called table1 so we can print it out later side-by-side with the figure -->
+<!-- Putting the table into a variable called table1 so we can print it out later side-by-side with the figure. Finding the min and max gdpPercap for each continent. -->
 
 ```{r, warning=FALSE}
 fig1 <- gapminder %>%
@@ -56,7 +56,7 @@ fig1 <- gapminder %>%
           ggtitle("Max and Min of GDP Per Capita within the Continents")+
           theme_bw()
 ```
-<!-- Putting the figure into a variable called fig1 so we can print it out later side-by-side with the table -->
+<!-- Putting the figure into a variable called fig1 so we can print it out later side-by-side with the table. Plotting the min and max gdpPercap for each continent using geom point. -->
 
 <div class="twoC">
 ```{r, echo=FALSE}
@@ -82,7 +82,7 @@ table2 <- gapminder %>%
             "Spread of GDP Per Capita Within the Continents")%>%
             kable_styling(full_width = F)
 ```
-<!-- Putting the table into a variable called table2 so we can print it out later side-by-side with the figure. Full_width compresses the columns together.-->
+<!-- Putting the table into a variable called table2 so we can print it out later side-by-side with the figure. Finding the spread of gdpPercap within the continents. Full_width compresses the columns together.-->
 
 ```{r, warning=FALSE}
 fig2 <- gapminder %>%
@@ -95,7 +95,7 @@ fig2 <- gapminder %>%
           ggtitle("Spread of GDP Per Capita within the Continents")+
           theme_bw()
 ```
-<!-- Putting the boxplot figure into a variable called fig2 so we can print it out later side-by-side with the table -->
+<!-- Putting the boxplot figure into a variable called fig2 so we can print it out later side-by-side with the table. -->
 
 <div class = "twoC">
 ```{r, echo=FALSE}
@@ -124,7 +124,7 @@ table3 <- gapminder %>%
             kable_styling()
 
 ```
-<!-- Putting the table into a variable called table3 so we can print it out later side-by-side with the figure. Trimming 0.2 of observations from each end.  -->
+<!-- Putting the table into a variable called table3 so we can print it out later side-by-side with the figure. Calculate the mean lifeExp and trimming 0.2 of observations from each end.  -->
 
 ```{r, warning=FALSE}
 fig3 <- gapminder %>%

@@ -1,7 +1,7 @@
 ---
 title: "hw03_dplyr&ggplot2"
 output: 
-  html_document:
+  github_document:
     keep_md: true
 ---
 

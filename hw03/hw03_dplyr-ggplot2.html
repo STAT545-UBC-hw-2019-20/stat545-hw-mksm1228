@@ -387,11 +387,11 @@ summary {
 <hr />
 <pre class="r"><code>table1 &lt;- gapminder %&gt;%
             group_by(continent) %&gt;%
-            summarize(Min = min(gdpPercap), Max = max(gdpPercap)) %&gt;%
+            summarize(Max = max(gdpPercap), Min = min(gdpPercap)) %&gt;%
             kable(., format = &quot;html&quot;, caption = 
-            &quot;Max and Min GDP Per Capita within the Continents&quot;) %&gt;%
+            &quot;Max and Min of GDP Per Capita within the Continents&quot;) %&gt;%
             kable_styling()</code></pre>
-<!-- Putting the table into a variable called table1 so we can print it out later side-by-side with the figure -->
+<!-- Putting the table into a variable called table1 so we can print it out later side-by-side with the figure. Finding the min and max gdpPercap for each continent. -->
 <pre class="r"><code>fig1 &lt;- gapminder %&gt;%
           group_by(continent) %&gt;%
           summarize(Min = min(gdpPercap), Max = max(gdpPercap)) %&gt;%
@@ -403,11 +403,11 @@ summary {
           xlab(&quot;Continents&quot;)+
           ggtitle(&quot;Max and Min of GDP Per Capita within the Continents&quot;)+
           theme_bw()</code></pre>
-<!-- Putting the figure into a variable called fig1 so we can print it out later side-by-side with the table -->
+<!-- Putting the figure into a variable called fig1 so we can print it out later side-by-side with the table. Plotting the min and max gdpPercap for each continent using geom point. -->
 <div class="twoC">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-Max and Min GDP Per Capita within the Continents
+Max and Min of GDP Per Capita within the Continents
 </caption>
 <thead>
 <tr>
@@ -415,10 +415,10 @@ Max and Min GDP Per Capita within the Continents
 continent
 </th>
 <th style="text-align:right;">
-Min
+Max
 </th>
 <th style="text-align:right;">
-Max
+Min
 </th>
 </tr>
 </thead>
@@ -428,10 +428,10 @@ Max
 Africa
 </td>
 <td style="text-align:right;">
-241.1659
+21951.21
 </td>
 <td style="text-align:right;">
-21951.21
+241.1659
 </td>
 </tr>
 <tr>
@@ -439,10 +439,10 @@ Africa
 Americas
 </td>
 <td style="text-align:right;">
-1201.6372
+42951.65
 </td>
 <td style="text-align:right;">
-42951.65
+1201.6372
 </td>
 </tr>
 <tr>
@@ -450,10 +450,10 @@ Americas
 Asia
 </td>
 <td style="text-align:right;">
-331.0000
+113523.13
 </td>
 <td style="text-align:right;">
-113523.13
+331.0000
 </td>
 </tr>
 <tr>
@@ -461,10 +461,10 @@ Asia
 Europe
 </td>
 <td style="text-align:right;">
-973.5332
+49357.19
 </td>
 <td style="text-align:right;">
-49357.19
+973.5332
 </td>
 </tr>
 <tr>
@@ -472,10 +472,10 @@ Europe
 Oceania
 </td>
 <td style="text-align:right;">
-10039.5956
+34435.37
 </td>
 <td style="text-align:right;">
-34435.37
+10039.5956
 </td>
 </tr>
 </tbody>
@@ -485,20 +485,20 @@ Oceania
 <div class="clearer">
 
 </div>
-<!-- Printing table 1 and figure 1 side-by-side -->
-<p>The table and figure above shows the minimum and maximum GDP Per Capita within each continent. Red represents the minimum GDP Per Capita. Blue represents the maximum GDP Per Capita. GDP Per Capita is on a log10 scale. The figure above shows that Africa has the smallest minimum GDP Per Capita compared to the minimum GDP Per Capita of other other continents. In terms of maximum GDP Per Capita, Asia has the largest maximum GDP Per Capita compared to the other continents.</p>
+<!-- Printing table 1 and figure 1 side-by-side, hiding the code to not disrupt the tables and figures. -->
+<p>The table and figure above shows the maximum and minimum GDP Per Capita within each continent. Red represents the minimum GDP Per Capita. Blue represents the maximum GDP Per Capita. GDP Per Capita is on a log10 scale. The figure above shows that Africa has the smallest minimum GDP Per Capita compared to the minimum GDP Per Capita of the other continents. In terms of maximum GDP Per Capita, Asia has the largest maximum GDP Per Capita compared to the other continents.</p>
 </div>
 <div id="task-option-3-spread-of-gdp-per-capita-within-the-continents" class="section level5">
-<h5><strong>Task Option 3: Spread of GDP Per Capita Within the Continents</strong></h5>
+<h5><strong>Task Option 3: Spread of GDP Per Capita within the Continents</strong></h5>
 <hr />
 <pre class="r"><code>table2 &lt;- gapminder %&gt;%
             group_by(continent) %&gt;%
             summarize(median = median(gdpPercap), SD = sd(gdpPercap),  
             MedAbsdev = mad(gdpPercap), InQuartRange = IQR(gdpPercap)) %&gt;%
             kable(., format = &quot;html&quot;, caption = 
-            &quot;Spread of GDP Per Capita Within the Continents&quot;)%&gt;%
+            &quot;Spread of GDP Per Capita within the Continents&quot;)%&gt;%
             kable_styling(full_width = F)</code></pre>
-<!-- Putting the table into a variable called table2 so we can print it out later side-by-side with the figure. Full_width compresses the columns together.-->
+<!-- Putting the table into a variable called table2 so we can print it out later side-by-side with the figure. Finding the spread of gdpPercap within the continents. Full_width compresses the columns together.-->
 <pre class="r"><code>fig2 &lt;- gapminder %&gt;%
           group_by(continent) %&gt;%
           ggplot(., aes(continent, gdpPercap))+
@@ -508,11 +508,11 @@ Oceania
           xlab(&quot;Continent&quot;)+
           ggtitle(&quot;Spread of GDP Per Capita within the Continents&quot;)+
           theme_bw()</code></pre>
-<!-- Putting the boxplot figure into a variable called fig2 so we can print it out later side-by-side with the table -->
+<!-- Putting the boxplot figure into a variable called fig2 so we can print it out later side-by-side with the table. Hiding the code to not disrupt the tables and figures. -->
 <div class="twoC">
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Spread of GDP Per Capita Within the Continents
+Spread of GDP Per Capita within the Continents
 </caption>
 <thead>
 <tr>
@@ -627,7 +627,7 @@ Oceania
 
 </div>
 <!-- Printing table 2 and figure 2 side-by-side -->
-<p>The table and figure above shows the spread of GDP Per Capita within each continent using a boxplot. I calculated the median, standard deviation (SD), median absolute deviation (MedAbsDev) and the interquartile range (InQuartRange) and this is seen in the table. From both the table and figure, we can see that Asia has the largest spread of GDP Per Capita compared to the other continents. In contrast, we can see from both the table and figure that Africa has the smallest spread of GPD Per Capita compared to the other continents. Also to note, a log10 scale was not applied to the Y axis. This is because it resulted in the inability to visualize and appreciate the spread of GDP Per Capita within each continent.</p>
+<p>The table above shows the spread of GDP Per Capita within each continent. I calculated the median, standard deviation (SD), median absolute deviation (MedAbsDev) and the interquartile range (InQuartRange). Next, I plotted a boxplot to visualize these parameters. From both the table and figure, we can see that Asia has the largest spread (SD) of GDP Per Capita compared to the other continents. In contrast, we can see from both the table and figure that Africa has the smallest spread (SD) of GPD Per Capita compared to the other continents. Also to note, a log10 scale was not applied to the Y axis. This is because it resulted in the inability to visualize and appreciate the spread of GDP Per Capita within each continent.</p>
 </div>
 <div id="task-4-option-compute-a-trimmed-mean-of-life-expectancy-for-different-years" class="section level5">
 <h5><strong>Task 4 Option: Compute a Trimmed Mean of Life Expectancy for Different Years</strong></h5>
@@ -635,26 +635,27 @@ Oceania
 <pre class="r"><code>table3 &lt;- gapminder %&gt;%
             arrange(year) %&gt;%
             group_by(year) %&gt;%
-            summarize(Mean = mean(lifeExp, trim = 0.2)) %&gt;%
+            summarize(MeanlifeExp = mean(lifeExp, trim = 0.2)) %&gt;%
             kable(., format = &quot;html&quot;, caption = 
-            &quot;Trimmed Mean of Life Expectancy for Different Years&quot;) %&gt;%
+            &quot;Trimmed Mean of Life Expectancy (20%) for Different Years&quot;) %&gt;%
             kable_styling()</code></pre>
-<!-- Putting the table into a variable called table3 so we can print it out later side-by-side with the figure. Trimming 0.2 of observations from each end.  -->
+<!-- Putting the table into a variable called table3 so we can print it out later side-by-side with the figure. Calculate the mean lifeExp and trimming 0.2 of observations from each end. Hiding the code to not disrupt the tables and figures. -->
 <pre class="r"><code>fig3 &lt;- gapminder %&gt;%
           arrange(year) %&gt;%
           group_by(year) %&gt;%
           summarize(mean = mean(lifeExp, trim = 0.2)) %&gt;%
           ggplot(., aes(year, mean))+
-          geom_line(color = &quot;dark green&quot;)+
+          geom_line(color = &quot;orange&quot;, size = 2)+
           xlab(&quot;Year&quot;)+
-          ylab(&quot;Trimmed Mean Life (20%) Expectancy (Years)&quot;)+
-          ggtitle(&quot;Trimmed Mean Life (20%) Expectancy for Different Years&quot;)+
+          ylab(&quot;Trimmed Mean of Life Expectancy (20%) (Years)&quot;)+
+          ggtitle(
+          &quot;Trimmed Mean of Life Expectancy (20%) for Different Years&quot;)+
           theme_bw()</code></pre>
 <!-- Putting the figure into a variable called fig3 so we can print it out later side-by-side with the table -->
 <div class="twoC">
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-Trimmed Mean of Life Expectancy for Different Years
+Trimmed Mean of Life Expectancy (20%) for Different Years
 </caption>
 <thead>
 <tr>
@@ -662,7 +663,7 @@ Trimmed Mean of Life Expectancy for Different Years
 year
 </th>
 <th style="text-align:right;">
-Mean
+MeanlifeExp
 </th>
 </tr>
 </thead>
@@ -765,13 +766,13 @@ Mean
 </tr>
 </tbody>
 </table>
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqAAAAHgCAMAAABNUi8GAAABPlBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZAAAZpAAZrYzMzM6AAA6ADo6AGY6OgA6Ojo6OmY6ZmY6ZpA6ZrY6kLY6kNtNTU1NTW5NTY5NbqtNjshmAABmADpmAGZmOgBmOjpmOmZmOpBmZgBmZjpmZrZmkJBmkNtmtrZmtttmtv9uTU1uTW5uTY5ubqtuq8huq+SOTU2OTW6OTY6ObquOyP+QOgCQOmaQZgCQZjqQZmaQkDqQkLaQtpCQttuQ27aQ2/+rbk2rbm6rbo6rjk2ryKur5P+2ZgC2Zjq2Zma2kDq2tpC2ttu225C229u22/+2/9u2///Ijk3I///bkDrbkGbbtmbbtpDb27bb29vb2//b/7bb/9vb///kq27k///r6+v/tmb/yI7/25D/27b/29v/5Kv//7b//8j//9v//+T///+0u83GAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAexUlEQVR4nO2dC3vjxnWGofVKIWi7iV1xd81km17Smra3u16LvaRxd21XdJLGzkq009aVFIquJGr+/x/o3EBcSIAAiJk5M/jO81hDrvHiDAYf54bBnIjBYIQtcp0BGKzKIFAYaYNAYaQNAoWRNggURtogUBhpg0BhpA0ChZG2hgK9HUfaHrxR/7KaHl40OcNqOtCfZj/9XH/6018d12LneadfR9Fgw/ftz1/xE74bRQ+/FV9/fBpFPxWfVv8SHXwoT6LyO0tdzpNrGhRPVmLLX76peaS2rTnNuFY5TC+q9PiyjMyiSeFDKOZSoNHBK/lhOYzaCHSxVVJCeAuZQ3F2lV+BzQ4vFupf1B1cvv1qfdqmAl3no6Ztz2nO9SR7UeXHl2Xkdqw+LWpfgy/WoolvKskivRbowbtKl/O3hg0FKm2xrbJY8ENW04PP2ep34l7No7+84J+O+R1U/yUVKHe/vpVN9dZCoGXVmjrT6ruh/q2qQ8uPL82IUuZq2vRSyNseAuVSm0cPvuHflsPj74cHf88Ww+i9C5b/lmll2ffD6OE3qUAf/FqeaDX9lRRo5jjeQvMTCE+/f1d+UparQWeqakwpnSdRIx/rY1RWxV8hTvE/kwo0W4Vm9DaPZAV8zA/n2X8oj8jn/xU/Dfd8vD2X6gitMPmDEBea5lT0O1S5fZtzzV2mF/U3+StLjk+/a39JRrSTicj+pJDjdR7lOXg/R3d0vLG9BPrWMDr8XynQnw35lf9mKJum/DfRgOv2VrZnD5+mAv2D1MjynT8IRRWOE62evAOq/ZO2RaApJW05nKTZFHIcKE9vVlNVg6b1ZlqVZwQqqiDRXN6OxTXI86YeFuqD1sW2XOojtN+FzpbK6SI5jyq3i5zr5NeUEeiycHzmu/aXE6jI9XI4UIWwpSTVvcoVpxe2l0BF6aykQKMP2feisJbD4jfe3vKf7J+GQi285f1xGqUC/eNUFO9sIKq89Dgukm9FKYtPYqwwjzaUpLtrkwxVOELVJqouZXN+s1QfNNPzFLJNjozWnVbeVAqQ910HF7KXkM0XP+B7cc1z2Y/YzGV6xEx3e5UDlVNeKvwoUSJpl3udX/kb0hdVuLKknDPfk1LJ9jUW0U9UA19SkrIOeP+CLYdedVP3EqgoDyXQgfgJ83/e9k1pRPy+xae0fPg9EbeQN7ri/6TH8b///ft/HcobLr7papBtE2iOYhlNcJ2sG3spUDWK5xUol+P7LPlX9SEjUFHdJdmXWSzmP+NuI5fpEQsp8uw3fd0zUQNnfkWlAk39quOL32Wp5DrDM103lpfkcvjWr76pd5PJ2F4CTTp4skiUjmbFb4v13Vcds8wgiTd7XBMLdevT43QTJYtVeSgX6CKrrcz4bfW1bEQzApXGK1Du8kelnPVQJHebl0M11h9oMPWQdh/m6m5v5DI9QvCLdcdDCU7+v4UQaDrILBdo6lcdX/wuSyWX8+SHXF6SsrMRvfct88jcClT3CvMC5c3rz/7tP38Y7yHQpBXVldhs3dM7lnWsqme3C3Qh66HdAt2Wy0wPWDcPyTl3CXQ9outUoMU88ob/aZTOEHphxgWa3jRVnaUNtpANHygNVXOWPW7Ckp7TLoFmJJHJGu/tfpj5vlaEmIPaIdDb8cOnUn4KFLV7Pv8JsC2X6RH85P8wznzJN/GbAk1G8dkmPvGrji9+LxdoeUlK+69/9mqUZFygclKSj41Edclls8oOkt7wCuVv5c0+ZulxvEAvxExJOktUOUjSlD6nasnWjetMzIN+rQclogLNCDTtg2Zus6wzxYBfTaAOMh7kEGgplDuXredmLtMj+Me/WGdiY5BUFOjqu6EcdhUGSWu/6oTF74PMJQhLBFpekgt+UWz1uyxE3owLNGlxkgc82Wkm2VAmY5n1cck0yhaB6sbrOHsvk7OrI9KJIdmUpU+SmKpAWdoH3RjFR2qiRk01vTXUYCH/arpRZGFLLtdHiGNS2aucptNEGYEmriesINBseegKP/ddCTTKPINbt00VJam/Nr/pzsy8QNmS93vekk0u7wE9/GO2D6rnl/X4PjlOzmh/PsvVFdK2CDRzdmGyUUsOE+dPZsfZ+iHnd0M1it88LQdmSuADnn3xnEGCqYfvh2qa+/ZpNLjYmsvkiOxsBcvkVE3UFwV68N76WXzmSVLiNzk+/136kxlJzpV2nspKksmJ+vd90mdoq5lS1e207JTohqU3u63VflwJq7TABJqZ29llsyoJ7i3QH5961ZDStdAEml1GV2mVFei+AhVd35r5gFVbcAKV60FrWLWQ9xQoH428vw8PW1twAoWFZRAojLRBoDDSBoHCSBsECiNtECiMtDUUaAyD2bGdAr0cCTthdy9GT67WAtXpn5vpGkhQiA03sU6ra9DrJ1f3r0/Y5QdFjGzZAbGAkBHo3aen7O7lObv55LyAkS07IBYQMgIVNefNsyspVN3//DMMZsPqCFTqkrfyWqBZXZP9cQOxgFCpQYU2MzVoFiNbdkAsIFQEevac/0EfFIgLN7FOKwR6/4WoN+9fP8coHoh1N7FOKwSqG3bMgwJx4CbWadMnSS3dAQkJgUCBkEYgUCCkEQgUCGkEAgVCGoFAgZBGIFAgpBEIFAhpBAIFQhrpyM1R1fGxTiFQIG7cHFXqEwIF0h7pwM0OeUKgQPZA9nazU54QKJA9kD3d1JAnBApkD2QvN7XkCYEC2QPZw01NeUKgQPZAWrupLU8IFMgeSDs3Rw3kCYEC2QNpwzRSJ4NAgeyBNGeOjpoisU4hUCDGGVF7QqBArCHNGNW4Q6BArCFNmKTvCYECsYbUZ9KhEQQKxBpSl8mO3CFQINaQWkxh2hMCBWINqcFsTHtCoECsITuZLbPyECgQa8gOZutDIwgUiDWkkil5pgmBArGGVDClj9whUCDWkFKmYkUIBArEGlLCVC5YgkCBWEO2MbtWe0KgQKwhG0yNtcgQKBBrSJ6pt1IeAgViDUmZo9rvcUCgQKwhmmn0kpEtgbqOkAcjYlydRs/fVqA6JfvjBmIBafiCZis3sU4hUCAN7aj5G3At3MQ6hUCBNDA9KHIl0Hkk7Xg3RrDsgJhG0obdiUBvx4ky59HBqx0YtbIDYho52uf9jRZIrNO1QG9/8Sb9v7kv2zBSZQfENFIcFKEPCoQOsmXIDoECoYGUPClyJdDb8YT3RB+UNO9ZjEDZATGNlM92uhLobMDmD97MB7sx12UHxDRSORfvSKC8Al1NB2xRUYUmmG/FDaQR0vXizhZIrNOCQG/HxxBozxEDiztbILFOswJdTY8XB69EQ78T86e4gTRCzCzubIHEOs31QZfDaMBmhxe7MU+KG0gjxNjizhZIrFNMMwFR1mSFkrMmflIXI1/cQBohDdfPuRsk1cVoFzeQRkjz1Z2umvh5VfczhxEubiCNrMXaY4c1qFpuh2mmviBCnS28YJAExAJy1C66QUsGAgXSBNlr8bHLeVA08T1A9l187PBJ0mo6qRzLJxil4gbSCOlg8bHLaabZMVtUjOUTjExxA2mEdLP42KVA51jNFCzS2eJjZ33QmVRn1WxoghEobiCNkNL5Tp8EyjuhbFb+SieDQD1FqmbjfRJofcy3O9RnZMezIggUiEtk55NMrwQ6j6JJ5QP5BPPoDvUaqfGg3SeBzg5/UK8l7cS8uUO9Rkytjnc4zSRmmjDNFAZSc5kSBArEBVJ7FZ1HAmVz0cSLFzt3Yh7coV4jZl/fcDdIWuzYfREC9QJptAbZK4HWxojfoT4jTZfIQ6BALCLmN49vyewt0Nu/3vU+Uhaje4d6jVh6v8iNQMfRznc6IVDSSLsXjHwRqHiMlJ9fun89enTK2OVoNHp8XsBo3qFeI7aiG7RkuuiDrqa5EfzZCbt+ciWSTYziHeo1ohv3sAWqp5l0RXr3Ulab91+cbsHo3aFeIzbDb1hyE+u08F58pga9efaVaOLvXvAmXlaisTCj4e9grcxwUEI3tkWgs3wf9OajEy7Sq5uPTzO1aIJRq0L6i+SnPQOuQTdG8Vyc7O5Tpcx1PzTBCN2hXiPFeaWQBVqcB737DAIljjiJD2PJTazTiidJZ7KJFwP5+y8xzUQP2TYrH7BANyPN8eGRmP+8HMnp0DxG4g71Gtn+0ChggWY6oYjVSR7p8B1ibwTKxDge0Y59QMofuQcu0PqYfzc1HMRxhC1LbmKdQqCeIZ2/5A6BAukO2bWeDgJt6Q5IJwiFEHCW3MQ6hUD9QczswgCBAukGIRKj0JKbWKf51UxVG9vlMF9uajhIvbc5whaonAitDpWUYH7c1IAQOkE0LbmJdVps4kWsJEzUU0NMbhPimUCVREs3v0kwD25qQAipKK+W3MQ6LQp0HkUDVh6SO8Ho39RwkCbvEgcu0NU0UgtGSvcPSzDqNzUghFoYYktuYp3mR/EV+9rlMeI3NRzE/D42Hgm0AUb6pgaEEIyTbclNrNONKB+VGyxDoFYRKxst+STQmdAmtgCngtAM5G7JTazTYqQ5VjFCYhCoReToiGjG7LiJdQqBEkWOqGbMkptYp/ktwIU0sQU4AcTiTmA+CRRbgBNBbO4E5pVAa2Nkyy4EJBm8k8uYTTexTiFQcsh68E4tY1bdxDrNCXQ5zGy/WImRLTvvkczcJ62MWXYT6zS/gW3VHH0OI1t2viP2t6rzSKB6mqkORrbs/Ebyj44IZcy+m1in+RoUAnWKONlL0SOBVk7R5zGyZecxsvHknUrGnLiJdVrYAhyDJGfI5pN3Ihlz4ybWKaaZaCDuNvuEQIHsRhxu9umTQDEP6gYpWffpPmMO3cQ6zY/ij/lAvnKyKcHIlp2PSNm6T+cZc+km1mlxHnR2zBYVezckGNmy8w9xvRutZwKdD7Ae1CrifDdajwQqXvng6pxX1aCuA5AFZkEGievEtgpUvDQ3K4+gwFCDdoxUv3VE9lowzdQPhMZ2yR4JFO8kWUWIbJcMgQLZilDZLtkbgc6jxPBevHmkzp4MZK/FcQ1aByNbdp4ghLZL9kigDTCyZecFUnNLG7LX4kyg2JvJCkJru2SfBIq9mSwg9XcEI3stGMUHjJDbLhkCBZJBmuxYR/ZanDXx2JvJMNJsw0+y1+JuFI+9mYwiDTf8JHstmGYKEmm8XzLZa4FAQ0Sa75dM9lrcCXQeRZOq5aAQaGuE7H7ePgl0dvjDeIJ5UAMI4f28PRLo7Vi+MYdpps4Ryvt5Q6C9R2jv5+2RQNlcNPGYB+0YIb6ft08CxTxo9wj5/by9EmhtjGzZUUPo7+cNgfYZ8WA/b68EKl/7qFpWn2Bky44Ukn12RCpjeyLuBklYLNIl4sd+3h4JFMvtukQKj97pZGx/BAINAPFmP2+PBMoWYtcbNPFdIBuP3qlkrAvEXQ26fjW+rBJNMLJlRwPZsrKORsa6QTDN5DmybeUSiYx1hLgS6Op/amNky44Asn1hMoGMdYa4a+Jl73P1Txgk7YGULPx0n7HuEHeDpOjwgv/BKL49Uvpeh+uMdYm464PKYRJ2FmmPlK+b9+9a3LqJdVoYJC2HlYuZINBqxMcN530S6GoaDWQzvxMjW3YukcrXNj27FuduYp3mB0lqoh590FaIpxvO+yTQv1PpbyHQ5oi3G857JNAGGNmyc4X4u+G8LwKVK0XkOpFkscj969GjU8buXoyeXBUxsmXnCPF4w3l/BXp2wq6fXN2/PmGXHxQxsmXnBPF6w3lvBXr38jxJbj45L2Bky84F4veG894K9ObZV6KJv3l2xe4+PRWIMNcR8ggaohmasBoC/ehEqJO38lqgWV2T/XFbR+ruWefDtVByE+u0qgaVykxr0CxGtuxsI/5vOO+tQO8+k8pEH7QCabDlJ/lrIeYm1mlGoMXl9Geyib9//Ryj+BIkiA3nfRHopt29GD0+xzxoORLGhvP+CrQKI1t29pCGO3qTvhaCbmKdQqAtkWA2nIdAg0Qa7+hN+FpIuol1CoG2QRoH7CB8LRBoeEhQG877JNC5mmbCziLVdkQ1Y2EL9HacKHMeiZX1lRjZsjOPHAUWEcEXgd7+IrOOPvdlG0a27IwjR1a80EbQByWLHIUXEQECDQhJBu/kMmYXcShQ8US+tAPK+i7QICMi+CXQ2YSx5Tt4q3ObZSY/aWXMOuJukLSaQqBllp2bJ5Ux+4iraabDCzTxpRZsRARvBCo2ZqraNyyHkS07Q0jAERE8EqjYf7Fy67DeCjTkiAheCVQ8RaqK49VPgW4uDSGSMVeIG4Euh+pljxn6oHnbsnKJRsacIW5G8T/nulyITii2AM9Z6BER/BNoHYxs2XWNhB8RwReBrpv4WhjZsusY6UFEBG8E2ggjW3bdIn2IiACBeouUv9jh37V0ijgSqF5Pj3jx2noSEcEbgc50B/R2XDFSSjCyZdcd0peICL4IVMfiZgjHLa36vU2/rqVzBAJ1jvQoIoIvAmUzHR8JTfzubUN8uhYDiKNB0gKDJG29Ctnhj0CbYGTLrgOkxrYh3lyLGQQCdYnU2dXGl2sxhDgS6Ew/6uz3IKl3ITu8EehMxoqf9Fyg9XYF8+NajCEOp5nEEL7PAu1hyA6/BMpW00F/BVp7V0UPrsUk4nQe9HZcteguwciW3T5IP0N2eCPQ5F2P1bSnAm2wKS35azGLUJ5mch0hz5whoiEpaytQnZL9cbdGehtTxpcatN/7g/Y4powvAhWjI/0Uvn87LPc5pow3AmXyWVIv96jvdUwZnwRaHyNbdm2QfseUgUCpI831SfdaINCW7ggjfQ96BIGSRo56H/QIAqWMHFnxEhoCgdpCEPTIM4HOo2gy1y/PVWJky64RgqBH7RB386CHP4wnq2lf3uo8suIlQMSVQG/HE7EqtCfrQddPN6lljD4CgVpAEPSoPeKsiZ+LJv523IdHnZnZeVoZ8wFxN0ha7HgUH4xAEZVrHwTTTKYRROXaC3EiUN0BrYmRLbtaCKJy7YdAoEaR4uJkMhnzBnHTxCcbLFeGUkgwsmW3G0FUrr0Rh9NMdTGyZbcT2VxcRyRjHiEYJJlDEDauA8RdHzT4Jh5h47pAUIMaQhA2rhvEsUCDfdSJsHEdIRCoEQRh47pCIFATCMLGdYZAoAaQ8nc3/bsW1wgE2jlStbWNb9fiHoFAu0YQNq5TxNE8aLiPOqu3ZvDrWiggmAftFkFcw44RCLRTBHENu0Yg0C4RxDXsHIFAu0MQ19AAAoF2hiCuoQkEAu0KQVxDI4gzgS6HYU0zIa6hGcSVQCs3vcljZMsuiyCuoSHElUALr3xcjkajx+dJksfIll2KIK6hMcRdDZoT6NlJNsljZMtujSCuoTnEWR809xT+/ovTTFLAyJZdgiCuoUHEXROffRZ/94K37SdJIhBhriPk1TTENfTdtgk0bzcfn4rqUycFXZP9cSsEcQ2NIoTmQYv90AQjW3YCQVxDwwiheVAfBYq4hqYRd6P4Yz6QTyabrp9csfsvz3VSwMiWHeIaWkBczoPOjtlCR1G4HI0ena6TPEa27BDX0ALiUqDzgd+vfCCuoQXEWR90JtVZFYcmwaiWHeIa2kCcCZR3QtmsPFg8oy5QxDUMXKD1MZJlh7iGEGiCUSw7xDUMX6A+h0JEXENriLtBksehEBHX0B7icJrJ10hziGtoE4FAmyKIa2gVcdbE+xoKEXEN7SLuBkl+hkJEXEPLCKaZGiGIa2gbgUCbIIhraB2BQOsjiGvoAIFAayOIa+gCcSLQ1dTDDWwR19AJ4qYG5SP4naE6iQkUcQ3dIM6a+NlOjSYYibJDXENHiMM+qGjoqzSaYATKDnENnSFuB0mrqRd9UMQ1dIe4rUGrFtTTESjiGjpEXAl0lzoZHYEirqFLxNUofpc6GRmBIq6hUwTzoNUI4ho6RvAkqRJBXEPXCARahSCuoXMEAq1AENfQPQKBliOIa0gAgUDLkN07f5K9qSEhEGgJUmNnMLI3NSTEiUA9iBePuIZEEGc16FxIsxAtaTvmouwQ15AK4kqgWppE34tHXEMyCAS6idQNjED2poaEuG7iCW7cUHvjZLI3NSTE3ShebtxAcMEy4hqSQihPMzmJOoa4cf2ztgLVqdUfd5PACGRrnZAQdzUoxQ1sm8WNI3tTQ0KcCZTiBrYN48qQvakhIQ6nmcjtD4q4hgQRCHSNIK4hRcTdPCixDWwbhi1u6QUIRTexTilvYIuwcUQRyvOgLd21QRA2jioCgQo7InyHeo44E+hySGc9KOIa0kVcCbRyBjSPmc7hEeIaEkYcTjPVxQznEGHjSCPualAiAkXYONqIsz5o1RR9HjOaw/XsJ9k71HOk54MkxDWkjrhr4qvm6HOYuRxmnx6RvUM9R/o8SELYOA+QHg+SEDbOB8RdH/Qdx4MkhI3zAnHXxLvdWWRj8RLZO9RzxFkNWh8zkUOEjfMF6adAETbOG6SX86AIG+cP4m4U726xCMLGeYT0bx605N0Osneo50jv5kERNs4vxFkf1NFiEYSN8wzp2SAJYeN8Q9w18S4WiyBsnHdInwZJla++k71DPUd6NEhC2DgfEXd9UNuLRRA2zkvEXRNvebEIwsb5iTirQetjneQQYeM8RXoi0N07g5G9Qz1HnAhU7r1os4lHXENvkV7UoIhr6C/Sh2kmxDX0GOnBRD3iGvqMOGvi8wE+Lkej0eNzdvdi9OSqiO2ZQ8Q19BohMg96diL+3r8+YZcfFLH9clh3Z2+yd6jnCI1B0v0XpyK5e3nObj45L2B75RCBNz1HXE0z5Y/gTftodMJunl2xu0+FVmNhHQS5Q2BD2G7bLdCbj09FLXr9JBFoVtd7/IQaRO4gW4X0HKFRg0o7O0lr0CzWPocIvOk/QkqgHfdBEXgzAMSRQKPE1ChetO33X57fv37e4Si+WWQusneo5wiRGvRyNHp0yjqdB0Vk2CAQIgKtwtrlEJFhw0BCFSgiwwaCBCpQRIYNBaHxJKkSa5HD5vqke4d6jgQpUIQuDgcJUaAIXRwQEqBAEbo4JCQ8gSJ0cVBIaAJF6OLAkMAEitDFoSFhCRShi4NDghIoQheHh4QkUIQuDhAJSKAIXRwiEo5As483yRY3EIpuYp0aFShia4eJhCJQxNYOFAlEoIitHSoShkARWztYJAiBbiz/JFvcQCi6iXVqSqAI/h4wEoBAEfw9ZMR/gSL4e9CI9wJF8PewEd8FiuDvgSOeC7Tk9U2yxQ2EoptYp90LtOz1YrLFDYSim1innQu09PV3ssUNhKKbWKddC7R8ewayxQ2EoptYpx0LtGL7ELLFDYSim1in3Qq0ansbssUNhKKbWKedCrRy+yWyxQ2EoptYp10KtHp7MLLFDYSim1inHQp0x/Z1ZIsbCEU3sU4dxosH4isCgQIhjUCgQEgjlAXqOkIerCfWVqA6JfvjBmIBoVyDtnQHJCQEAgVCGoFAgZBGIFAgpBEIFAhpBAIFQhqBQIGQRiBQIKQRCBQIaQQCBUIagUCBkEYgUCCkEcoChcHsWDuBFvVt1uCFphdbboRBoPBC1o0wCBReyLoR1lKgMJgdg0BhpA0ChZE2CBRG2iBQGGlrItCbT875n49Gj3lyORqJ9O7F6MlVtznKerl/PXp0ygx7EZcyGp2Yvhad+OqFn5iXUXLifGLSGgj0WinyhF3yTJ2diH+6f82/fdBphoperp9cmfYivhv3cvfpqUhMe1FJ915E9m8+PtUnzidGrb5Azx79B/+l3jy7Epm9/+JU/Nvdy3P1++3Mcl7E6c17Yar4DXuRyctzG15UwXXr5Vro8OxEnzifdOhm05o28UkJvJCtYnqLu7ObbHF/JZp4w174N1ENGPaia1DjJZZNOvXCNs9vxk3emgpUtiGPTnltz3gtyltGI8WdePlI/gYMe1EVKDPtRfXXDHvRiQkvvEF/nmQ/n3TrpmBtBkn/qNp3XuObqg+0F4M/1Ny1iII2VoMm18J/0tePz01fS67gOvVy9+I5s1JR562xQJnqEwpbd0k6zVHGy91nhnpUhWs5e85M9HRzXnRtY/xamJmeLhOt2bqQCPdBZVfqA1nn3H95Lmr9rodxGS9iFM9/paa9qBGfYS+6BjXsRSfde1H6TE6cT4xa4xr0eiSnvi5HRmcotRd+epNzh4kX1UoZ9nJtpcTSguvWS2GymOQ8KAxm3yBQGGmDQGGkDQKFkTYIFEbaIFAYaYNAu7fV9MEbniyHA9c5CcAgUAO2HB7zv7PDC9cZCcAgUBM251XocjhxnY0QDAI1YbfjAZuJBn41jSLR3i+HURQds+U7v5ZfYbUNAjVii4PfvP1K6JOrdH54cTueyGoV3dLGBoEaMV5zim7oQlSXXJ3/J3qjy7dfodlvbBCoGZPSZPNIGtfqgicHr5aiWoU1MQjUjGmB6oH87fjglaxBIdCmBoGaMSXQxYES5EIIdYEatIVBoGZMCXQ15crkwhRCXQ4h0BYGgZoxJVA5zSRq0RlP/n08gUAbGwQKI20QKIy0QaAw0gaBwkgbBAojbRAojLRBoDDSBoHCSBsECiNtECiMtP0/eM+4wa40NoAAAAAASUVORK5CYII=" /><!-- -->
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqAAAAHgCAMAAABNUi8GAAABPlBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZpAAZrYzMzM6AAA6ADo6AGY6OgA6Ojo6OmY6ZmY6ZpA6ZrY6kLY6kNtNTU1NTW5NTY5NbqtNjshmAABmADpmAGZmOgBmOjpmOmZmOpBmZgBmZjpmZrZmkJBmkNtmtrZmtttmtv9uTU1uTW5uTY5ubqtuq8huq+SOTU2OTW6OTY6ObquOyP+QOgCQOmaQZgCQZjqQZmaQkDqQkLaQtpCQttuQ27aQ2/+rbk2rbm6rbo6rjk2ryKur5P+2ZgC2Zjq2Zma2kDq2tpC2ttu225C229u22/+2/9u2///Ijk3I///bkDrbkGbbtmbbtpDb27bb29vb2//b/7bb/9vb///kq27k///r6+v/pQD/tmb/yI7/25D/27b/29v/5Kv//7b//8j//9v//+T////HofhXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAgAElEQVR4nO2dDXvb1nmGocSayqRrm4mOoy5bt3WLknh2UqnbunZykolZuza1xbrbMkkVzUwShf//B4aDb4D4Ooc4eB/gPO91xTQd3DxfN88XAMLzGQzg8KQzwGA0BQVlQAcFZUAHBWVABwVlQAcFZUAHBWVABwVlQIemoHdHXhxvvYz+ZXO6f6nzCZvTg/hvix/8Kv7bH//qUC8bvv+15x2E6S6LGUn/PYtlkuWD8ofUxPqvX2rm5u7HZ0Epvu95j75Rb7/70PN+oP62+Wdv76MwD1ElLXLlrMhpIb/RB2SFqj2+LvcL77j0lzGGpKDe3ln4l/XM0xV0lfpWFHRV4aG2oOlHdg4l3ipMQxUpqiT1IYv9y1X0L5Ei63fOtkuwlXyS3+N8oeqPr8v93VH0t1XngiOGwRCvq2SZTgXd+37k5fLtmb6gSadQtGlV0Vlo+6YNrAJgc7r3K3/zayXD0vuLy+Bvh4Ei0X9JBxqUOXWlKqf55Dd/mMXf3+jQ+uNrcx+ZuTnV/r4hxQ6CBqotvbd+F7xbzw5fz/b+3l/NvB9d+sV3uQHPfz3zHv0uE/StX4QftDn9aSho7rhgsAw+QKX0m++Hf4tDHaJG0UXWhRd60Pjfs08qHKHUCbu6w8CaIHePzny/nL2z4HOCDzmszkR0RCxLqF5cEWoYOIwzEdWP+lMdof5n0oHmutBcTlWBorr8ppDfIJ9Zof6mWLLk+Ox9nMkk93Eix6rMx6VipgULPyOYhsTzEMjYSdC3Z97+/4aC/nAWlPKXs3AYKr5TA3g89IVj16MPM0F/GzbX+t3fqsYtHadGuLC2o7EujFVySLOg2ScVj4h6EzXy3R2pLIaHZAevor/ETVyVifiIQDhVhlWSwnp2nCVwEP/foHgvN6dRD5r1m+n4EeU0LVBUl5eF/Cay5wRdl47PvY8zWRBUFXU9O4jyWFG7UfsVqhgudhJU1cQmFNT7yH+tKmY9K78Lhr7g6/nHmWq4YBD87tTLBP39qarKxYHqfbLjAou+UTWq/qbWBcuECN5+pCo4nJZtDfHxdO0490nxEfGULpLwQPUowSzx4DIcj/PJBge8VkVahiP2diayIxbxBLOUhai7ivpSf6m+SOEcNDfzjEgVUU6TAkV1Wfq4UPGksMWSJXWfe5/UVH6CsvL+LBrga2o37Bfeu/TXaWXBxU6CqrJHgh6or2vwz1XvouZS32X1t6wugvpXbRyMf+r/ZMcFf/73b/5lFhqh3sU9UoougpZvErTwSX5RUNVzJbkLc1DOXo7cykR2xCqUPB1J0zn5ay8d7ENBo1V80IEGeXjPT/41/YisQPmJYr2gWWaj48vvw5oqzKAXcd9YX7vr2ds//V1bkwvGToImc62w+JFHi/K7VapHJFVukRQMccq1yI3suHg4CqswSiEVNKzsVYugq7yQfqnF1rNoVR1+5FJlKjk4G6iXUcNtZSI7QvHpCJ8uGjdfh6N0TtAoyXfOgmO/i3xOMx4JlxQov/CsFzTLbHR8+X1YU4XiJl/u+toNJxvej77xQUNW0HiCVhQ0GH9/+K//+e2RFUFXYZfSLmhVJnJzzbj3L9VHNEzHXesinUoehn1sdLyGoOmCq1dBywULBv4PvWzXEC6sC5q1atSzpAN22ILBQmkWDV354479ZJZUErTjEF+c8edb7O7o0YehftEHq867mL0EqMpEdkSQzj+kI3xcH8EU+6Pc+1Q5tQdVK2g2xG8Lmqzi80P8cSHN8vt6QetrN4z/+ifYVZJ1QcP9wWBtpLrLoAU3+UXSy6Dz+NvQhkM/Oy6ovEu1K5Jt2GgvkuJPKh3hx32mWlpHW5UHuYPDJdBambsMB8LtTGRHBH/983SXIFZvkf7DQn341/GqR3WgOUELc9D8Iqks6OYPs3CtVlokpZmNclF+f5BLQUUiaH3troLM+ptf5yGosC5oMrok51ry20zhSJosK9Ljki2TLUGzbaa8oPHgdZhvyyTFwhFetOcSbTW9PYvHtVL2op1D9WkVmUiPUMfkVjXZdlX4mdmZJD/qQP1sDlpYxfu5baacoEl+j/2SoPk6ivvjwvtIUC93Xi4drxpqN36rL8IgYV9Qfx3Mcd4OR79gtvPo9/k5aLyXHK/vk+PC3etfLQr9QhTreF+7WdBcivkjAmUWkUoHQe7UaYRv/MLBr2fRjvXdh97BZWUmkiPymxHxqLlME8nOJ/jpSc4/zKJVfO7LluY02qgvC7r3o/RcfO5MUpLZ5Pji+/DTw9wnn5VNqOpq1w836t9D9dPRq5mydjON/JnH3DeoLfJboowuQUGN4rsP82PiqvMMbrHrF8O5oKBGuFe8/mpxWHdoMdiBagcFNYhgYfFe8fN+3E28riIz0nBTUMZogoIyoIOCMqCDgjKgg4IyoIOCMqBDU9DvMRjDRKugV3MVJ/798/mT61TQ+PVPmt8DIlNChkimXVAVb55cP7w48a8+KGOwdUdkAARG0PvPzv37zy/8208vShhs3REZAIERVPWct0+vQ1Hj+eefGIwhoougoZfBKB8Lmvca9stNZAAEpQdVbuZ60DwGW3dEBkBQBH31LPiDc1AiEsl0EPThC9VvPrx4xlU8kcGT6SBoPLBzH5SIQDLd9kFrMdi6IzIAQkGJQCMUlAg0QkGJQCMUlAg0QkGJQCMUlAg00k8yNzdNx1NQIsZIH8nc3FBQIpaQ3ZO5uaGgRKwhuyZzk0TD8RSUiDGyWzI3NxSUiFVkl2RuuvlJQYmYI+bJdNWTghLZATFNprueFJTIDohRMjc6elJQIjsgBoymnhSUyA6INqOtJwUlsgOiyRjoSUGJ7IBoMUZ6UlAiOyAajJmdPgUlsgPSmTHWk4IS2QHpyBT01E2GghIxRrow5aknBSUyGNLObK+MKCiRwZA2pmrhTkGJDIY0M9X7ShSUyGBIE1O37UlBiQyG1DP1+0oUlMhgSB3TtO1JQYkMhlQzzbvyFJTIYEgF03rGnYISGQwpMzetelJQIgMiBeami549Cbr0wjhsx2DrjsgASMbcdNSzD0HvjhIzl97eWQsGW3dEBkBipmxn4wVLOwt695cvs/9beFOFwdYdkQGQgNGS0yQZzkGJGCPadhokYyqo9BPyGNKxZaedZCoFvTs6Dmaib9UM73mvYb/cRKwiJn2nQTJ+TQ+6OPCXb71cHrRjgHVHxDZibqdWMlFUCRp0oJvTA3/V0IVSUFeRXeTUSCaNGkHvjg4pKJFSbE877eesStDN6eFq70wN9K0YTN0RsY1UDexCgvrrmXfgL/Yv2zGMuiNiG6mZdkoJ2h0DqDsitpH6RZHYEH/cFZOuOyK2kcYlu5CgwSKpKza26iaig7TuJ0kN8cum6WcBG1N1E9FCuux2ivWg0eV23GZyFuli5zA54yKJSBnpaOcwOaOgRApIdzuHyVndPiiHeBcRHTkHylnNmaTN6XHjWp6CTg/RtdMwGc3j67aZFof+qmEtT0EnhhjYaZJMf4IueTWTO4iZndrJGCF114MGdjbthlLQySDGduolY4pUChpMQv1F/S2dPgWdCrKLnRrJ7IBwm8ldZEc7uyazG0JBHUW27DRIRU7QpecdN56Qp6CjRqr6zjEJutj/NrotqRWDqG4iWkjNyD4iQcN7ko65zTRFpH7eSUGJSCONq6IRCeov1RCvbuxsxUbWQi4jbWv2MQnqr1p+fZGCjg1p31EalaCdsfG0kNNIl/1OCkpECOm2Gz8WQe9+0nY/Uh4bRws5jXSy0ywVGUGPvNZ7OinoaJCueo5HUHUaqemHF4sYfgs5jXTXc0yC+pvTxhV8HkNvIacRHT1HJWi8zcR7ksaMdFsZ7ZaK3Jkk9qAjR7T1HJOgC85BR44Y6DkeQbmKHztipOeIBOU+6KgRQz3HI6geBthCTiOmduqlsguzew+69aS5hxfzx+e+fzWfz9+/KGFwLeQ0soOe4xE0NwmNn9X56sR/8+RavWxjYC3kNJLXc5iMiQ3xi/zTju8/D7vNhy/OKzCoFnIZKU09Jy5oIW6ffqWG+PvnwRAfdqLfU2HnuXcMsyjoKZ2ZfqODoB+fBJJe335ynutF2YMCIRULd7d60Gv//rPIzHQeSkFhkMp9JZcEvf8ZBcVFarY9XRJUWRn0omoh//Alt5mgkNp9JacEDZZHav/zah5uhxYx6RZyGmnY9py4oMv8NlMjNrpGnQ7SuCs/ZUGzi+2W9b/ASEGFkZaTRhMWdPtUZxM2qkadDtJ6TnPCguphI2rUCSHtp9wpqGFyRHZH2vV0QFD1NET+BDgk0kFPBwRdHPv++l3eNAeHdLFz91QsMv0sksInxlNQPKSjn1MWNBjd9y85xEMiXfWctqDqUZ0NP/5dxPAbdUJIdz8nLqj64YaWG+Mp6OCIhp7TF1SdRWq8+ZiCDo1o+TlpQdWzuNUvNyw4B8VB9PSctKB3Pw68XKlJ6ObnXMWDILp+uiFoFwy4UaeDaOs5aUHTIb4TBtuoE0IM/Jy0oFoYaqNOBzHRk4JS0KEQMz+nLWh8PX3jPhMFHQQx1HPagi7iCejdER8mK4wY+zllQdVTOqPgszplkVRPtIwNmgwFRUWy7hMsY8MmUzHE70e/YMshXhLJj+5QGRs6mYpF0oqLJHGkMPtEytjgyXCbCRApLY5wMiaQDAXFQ8qLd5iMSSRT+Ria6FQnF0kiyPbeEkjGZJKpXiSt1ASUgkogFXufGBkTSqZmm0kt4Sno8Ejl1jxCxsSSqdsH3ZweUNDBkepTRwAZk0umdh/07ogPkx0YqTuzKZ4xyWSqFknRvR6bUwo6KFJ75l06Y6LJcJsJBGm4MAS2LBTUHaTpwiXYssgskvj7oMMjzdfVwZZFpgfdehRiEwZbd6NCWq77hC2L2BC/aP+NeukHkE0p0us+GdvBOag00n7ZPGxZuEhyAGnVE7gsFHTySHv32UcqthAKOnWkk5+4ZaGg00a66QlcFgo6aaSrn7hlkRL07qjplxcLGGzd4SNd9QQui1wPuvC8+N7OFgy27tCRzt3nTqlYRiSHePUUBT5M1hqioSdwWWTnoErR2gvuKOguiE73aZ6KfURS0KXnHWQ/4lCLwdYdMqLpJ25ZxATdnMY/21B71wcFNUc09QQui9wqnr+wbA3R7T7NUpm2oBoYbN2hIvp64pZFcog/VLd1dsBg6w4TMeg+DVIZDBETdBE+habJUApqgpj5iVmWoZKpnoM2r5B8CmqCGOoJWZbhkqGgQyHGfgKWZcBkKof4pVLz7ohnknpE0vs6rKYyLCK3il+13JJEQTWRrPsEy9hOCLeZpoLkRnesjO2GUNBpIIXZJ1LGdkXEBFWP6/Qan9hJQbsjxdURUMZ2RqQEbd6jL2CwdYeDlBbvOBnbHRHeZuqCwdYdCrK1uYSSsT4QuR6UgvaEbO99gmSsF0RsDtq0RV/EYOsOAqnam4fIWE+I3BDvcZHUA1J57gghY30h3GYaM1JzalM+Y/0hFHTESN2pd/GM9YhwH3S8SO2VIdIZ6xORW8UfBgv5xs0mCtqINFy5NLqyCCdTtw+6OPRXDb/dQEGbkKYL68ZWFulk6gRd8klzpkjzhZ/jKot8MnW3fAR2LtmDmiAtFyaPqiwAydTeNLeof4KCT0Hrkbbr5sdUFoRkuM3UK9J+X8d4yoKRDO9J6hNp1XNEZQFJhoL2iHTwczRlQUlmW9Cll0R8VejDi/njc9+/fz5/cl3GYOtOAGkf3vtIBQkR7kGTeHXiv3ly/fDixL/6oIzB1t3wSCc9R1IWoGTaF0n3n18kL7efXpQw2LobGunWfe6aChgius2U3vdx+/QrNcTfPr327z87V4gK6SfkgUXqp3RGJhftv810+/GJsjMY5WNB817DfrmHRbp2n7ulAodgrOLjrjPrQfMYbN0NiXQe3ndKBRDBEPT+Z6GZnIPWITp6opcFL5kOv830KhziH1484yq+CtHzE7ssgMl0+G2m++fz9y+4D1qNaA3vxqmAIhjbTI0YbN0NhOjqiVwWfYSCgiPa3adRKriInKBLzztuuhyUgqow8RO1LOMSdLH/7dExf6O+JUz0RC2LGSK4zaR2mng1U1MYdZ/aqWAjFBQXMdQTsizGiNw+qBri+Rv1DWHsJ2BZzBGQfdAmDLburCLZpSE2U8FHuM2EiWTdJ1jGhkYoKCSSG96xMjY4IroPGj+QuwWDrTtrSGH1jpQxAURukcQHedVFcXUElDEJRHCbSb1wm2krypufMBmTQSgoGLK1OY+SMSFEbIhfqV+94RBfju3NT5CMSSFyPWh6a3xdJ+qgoFXnNiEyJodwmwkIqTx3hJAxQURK0M3/dMZg665vpPrcJkDGJBG5IT6cfW5+zkVSHHWXLolnTBaRWyR5+5fBH1zFx1F7aYh0xoQRuTlouExqeqKsS4I2XPk5urL0iwguktazxouZXBK06crksZWlZ0RM0M2pdxAO860YbN31hjRe+TmysvSNyC2Soo16zkFdeiLCmAT9u+j1P5wXtO3C+TGVxQLCjXphpPXGjhGVxQYiImh4pUh4nYjzF4u0+jmislhBKKgk0q7neMpiCaGggkgXP8dSFlsIBZVDOvk5krJYQyioGNLNz3GUxR5CQaWQbnqOoywWEQoqhHT1cwxlsYkICdp6Ob0/bUE7Du87pjIFhBv1EoiGn/BlsYxQUAFEx0/0sthGKOjwiJaf4GWxjiALKv2EPEsR6ymdDUYa7EFziF73aZrKdBDkHtQwOWhE20/gsgyCyAnq5FM+9P3ELcvEBXXyKR8GfsKWZeKCOvkQBQM9YctCQScnqEn3qZ/K1BCxId65p3wY+glZlgERuUWSY0/5MPUTsSxDItxmGgYx9hOwLIMiIoLGE9COGGzdaSCJnnAZg0co6BBI2n2iZQwfkRnil05dD5ob3rEyNgZEcJupKwZbdx2R/PQTKmOjQLhIso0UlkdIGRsHIjcHdWSILy7fgTI2EoQ9qF2ktLuEk7GxIMKCTvxU59buJ0rGxoNQUIvI9u48SMZGhFBQe0jF2SOMjI0JoaDWkKqzmxAZGxVCQW0hlSffETI2LoSC2kFqLg6Rz9jYEKF90Kmf6qy7eEk8Y6NDuA9qA6m9uE46Y+NDKKgFpP7iz/GVRRqhoP0jDdcmj64s4ggF7R1punZ+bGWRRyhoz0jzvR3jKgsCIrSKn+wV9S33Ho2qLBAIBe0Vabs3bkxlwUBkhvip3vLReu/miMoCgkjNQSfZg7bpOaayoCBcJPWGtHafvaTiGiIn6HJivyzSxc+xlAUIERN0qWafE/ptpk5+jqQsSIjwHHQyVzN183McZYFCKGgvSDc9x1EWLIRDfB9IVz/HUBYwhIuk3ZGOw/uOqTiKgGwzXc3n8/cvkpciBlt3MaLhJ3xZ8BAQQV+d5F+KGGzdRYiOn+hlAUQwBH344jz3UsJg6y5EtPwELwsigiHo/fNgbD9JXhSiQvoJeV0i1lM6G4xdol3Q20/OVfcZv5S8hv1y87mGAyAYPWgY5XkovqDafgKXBRURE3Q9K19uNzpB9f3ELQssIiVo8SGIb55c+w9fXsQvJQy17gz8hC0LLiJ8qjOJq/n88Xn6UsRA685AT9iyACNyPei4L1g26T71UyEiNwdtukykiCHWnaGfkGXBRuSG+DHfk2TqJ2JZwBGgbaY6DK/ujP0ELAs6QkH1kURPuIxNEQHaB63D0Oou7T7RMjZJRG4Vfxgs5BtvPsYUNDe8Y2VsoojkPuji0F/tX7ZiUHWXn35CZWyqiKSgy4PR3ZNUWB4hZWyyiNgcdBHauRxXD1pcvgNlbLqImKDBJNRfeHtn7RhO3ZV2l3AyNmGE20ydka3dT5SMTRqhoF2R7d15kIxNG5ETdOl5x01TUDBBK84eYWRs4ojcImn/26Pj4lWhNRhE3VWd3YTI2NQRwW0mtdM0lm2mypPvCBmbPEJBOyA1F4fIZ8wBRGyIX6ohfhy/zVR38ZJ4xlxA5BZJq7H8NlPtxXXSGXMC4TZTG1J/8Sdso04JoaAtSMO1ybCNOiWEgjYjTdfOwzbqlBAK2oQ039sB26hTQkQE3ZyO40FeLfcewTbqlBCZHjRYwbfeFi8vaNu9cbCNOiVEbIhftDoqLWjrvZuwjTolRHAOqgb6JkeFBW3TE7hRp4TILpI2p6hz0Nbus5dUiEAkU9+DNl1QLypoFz9xG3VKiJSgbXb6ooJ28hO3UaeESK3i2+z0JQXt5iduo04J4T7oFtJRT+BGnRLCM0llpLOfuI06JYSClpDufuI26pQQClpENPzEbdQpIRS0gGjoCdyoU0KQBR38iWNJ9zl4wgzRGEsPqjO8m6dCBC6ZLUGTH6jH2mbS9RO3UaeEiA3xS6Um0g/YavuJ26hTQqQEjdXEuS9eW0/gRp0SQkHD0O8+TVIhoo9ID/EYP9xg5Cduo04JkdtmCn+4AeOCZTM/cRt1SgjyPqhhctqIoZ+4jTolhIKa6gncqFNC5AQF+QHb9OyR1VSImCJigoL8gG3af8K2kOOI4DYTwu+DZuM7bAs5jrgtaG76CdtCjiNy+6DyP2BbWB7BtpDjiPA+qOQP2BaX77At5Dji7jZTaXsJtoUcR5wVtLz9CdtCjiNigq5noteDbu3Ow7aQ44iUoI07oEXMQg4rzh7BtpDjiOA2U1es/xxWnd2EbSHHEbkeVE7QyrPvsC3kOCI2B23aoi9ifeew+uoQ2BZyHHFukVR38RJsCzmOyA3xTXv0BazXHNZeXAfbQo4jji2S6i/+hG0hxxG3FkkNFyfDtpDjiNwc9N3hF0lN187DtpDjiNwQP/gvizTf2wHbQo4jYj1od6ynHLbcewTbQo4jzgjadm8cbAs5jriyD9rmJ24LOY7IreIHvVikTU/gFnIccWMftN1P3BZyHHFiH7SDn7gt5DgiNgcd8GKRLn7itpDjiAOLpE5+4raQ44jcED/UxSLd/MRtIceRyS+SOvqJ20KOI1NfJHX1E7eFHEfk5qCFi0Wu5vP5+xf+/fP5k+sytksOO/uJ20KOI3JDfOFikVcn6s+HFyf+1QdlbIccdvcTt4UcR8R60EI8fHGuXu4/v/BvP70oYeY51PATt4UcRzAEDYb2+fzEv3167d9/plz9nopdn3AX+9nHw/IYU46KJ80dF4f420/OVS/65kkiaN5r06+QTv8J3IU4jmD0oGG8Osl60DxmmEM9P3FbyHEEaJvp1Umfc1BNP3FbyHEEY6Neje0PX148vHjW1ype10/cFnIcERviiw/4uJrPH5/7/e2DavuJ20KOIyD7oE2YQQ71/cRtIccRoEVSHaafQwM/cVvIcURE0A5Xivg7CGriJ24LOY5MUFAjP3FbyHFkeoKa+YnbQo4jkxPU0E/cFnIcERLUS6LnVXzr7e+1AdtCjiPT6kETP2GrmwhiMoMJmvafsNVNBDGZoQTNxnfY6iaCmMxAguamn7DVTQQxmWHOJOWXR7DVTQQxmUEELSzfYaubCGIyQwha3F6CrW4iiMkMIGhp+xO2uokgJmNf0PL2PGx1E0FMxrqgW6ePYKubCGIytgXdPr0JW91EEJOxLGjF6XfY6iaCmIxdQasuD4GtbiKIyVgVtPLyJdjqJoKYjE1Bqy+vg61uIojJWBS05vJP2OomgpiMPUHrLk+GrW4iiMlYE7T28nnY6iaCmIwtQetv74CtbiKIyVgStOH2I9jqJoKYjB1Bm26Pg61uIojJWBG08fZN2OomgpiMDUGbby+GrW4iiMlYELTl9nfY6iaCmEz/grb9PANsdRNBTMZWD1qPwlY3EcRkLAnagMJWNxHEZOwskppQ2OomgpjM4L+wTGQ6CAUlAo0gCyr9hDyGI8EelIgxgtyDGiZHZEoIBSUCjVBQItAIBSUCjVBQItAIBSUCjVBQItAIBSUCjVBQItAIBSUCjVBQItAIBSUCjSALymAME2aClv22G0wFM5WhklFBQZkKbDIqKChTgU1GhaGgDMYwQUEZ0EFBGdBBQRnQQUEZ0KEj6O2nF8EfH8/fD16u5nP1ev98/uS63xzlU3l4MX987ltORRVlPj+xXZb4ZaypBB8c1FHywcUXm6Eh6JvIyBP/KsjUqxP1Tw8vgncf9JqhcipvnlzbTkW9t57K/Wfn6sV2KtFL/6mo7N9+ch5/cPHFanQX9NXjfw++qbdPr1VmH744V/92//lF9P3tLQqpqI+3n4ofVb/lVMKXzy+GSCWquH5TeaM8fHUSf3DxpcdktkN3iE9q4Hk4KmZN3F/c5qv7KzXEW04leKe6AcupxD2o9RrLv/Sair/9+XaSKYauoOEY8vg86O39oBcNRkYr1Z2k8nH4HbCcStSB+rZTieZrllOJX2ykEgzoz5LsF1/6TaYUJoukf4zG96DHt9UfxKlY/KIWyqIq2loPmpQl+Eq/ef/CdlkKFddrKvfPn/mDdNTF0BbUj+aEKtIpSa85yqVy/zNLM6pSWV49823MdAupxL2N9bL4dma6vhrN0koCnoOGU6kPwj7n4csL1ev3vYzLpaJW8cG31HYq0YrPcipxD2o5lfil/1QiP5MPLr5YDe0e9M083Pq6mlvdoYxTCT7e5t5hkko0SllO5c0gNZZVXL+plDaLIfdBGYzhg4IyoIOCMqCDgjKgg4IyoIOCMqCDgvYfm9O3XgYv69mBdE4mEBTUQqxnh8Gfi/1L6YxMICiojVgGXeh6diydjSkEBbURd0cH/kIN8JtTz1Pj/Xrmed6hv373F+FbRuegoFZitffLd86Un4Gly/3Lu6PjsFvltFQ7KKiVCHpONQ1dqe4ysPP/1Gx0/c4Zh33toKB2IlTTX3phBK6ugpe9s7XqVhk6QUHtRCxovJC/O9o7C3tQCqobFNRORIKu9iIhV0rUFXtQg6CgdiISdHMamBmIqURdzyioQVBQOxEJGm4zqV50Ebz829ExBdUOCsqADgrKgGT+UBQAAAAnSURBVA4KyoAOCsqADgrKgA4KyoAOCsqADgrKgA4KyoAOCsqAjv8HTduU6xnyjgYAAAAASUVORK5CYII=" /><!-- -->
 </div>
 <div class="clearer">
 
 </div>
 <!-- Printing table 3 and figure 3 side-by-side -->
-<p>The table and figure above shows how a trimmed mean of life expectancy changes from year-to-year. I have a chosen a trim fraction of 0.2 (20%). From both the table and figure, we can see that as the years increase, the trimmed mean life expectancy also increases.</p>
+<p>The table and figure above shows how a trimmed mean of life expectancy changes every 5 years in the gapminder data set. I have chosen a trim fraction of 0.2 (20%). From both the table and figure, we can see that as the years increase, the trimmed mean of life expectancy also increases.</p>
 </div>
 
 

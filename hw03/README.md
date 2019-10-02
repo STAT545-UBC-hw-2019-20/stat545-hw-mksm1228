@@ -10,7 +10,7 @@ For homework assignment 03, task options 2, 3, and 4 were chosen. For each task,
 2. an accompanying plot of data from the tibble, using ```ggplot2``` as our visualization tool 
 3. some dialogue about what the tables/figures show 
 
-Below contains more description about what the actual tasks were. Also, for the first time, we were asked to make a HTML file output viewable as a webpage. To do so, I had to use Github pages. To access the webpage of homework assignment 03 [please click here.](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw03/hw03_dplyr-ggplot2.html) *Note: the text <style type> under the library code chunk was used to put the figures and tables side-by-side. It renders properly for the webpage. But, they do not render properly for the .md file, Regardless, I made both the .rmd and .md files as github outputs to make it more readable.*
+Below contains more description about what the actual tasks were. Also, for the first time, we were asked to make a HTML file output viewable as a webpage. To do so, I had to use Github pages. To access the webpage of homework assignment 03 [please click here.](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw03/hw03_dplyr-ggplot2.html) *Note: the code <style type> under the library code chunk was used to put the figures and tables side-by-side. It renders properly for the webpage. But, they do not render properly for the .md file. Regardless, I made both the .rmd and .md files as github outputs to make it more readable. In the .rmd file you will see I made comments as to what the code does and where it is derived from.*
 
 ### **Task Option 2**
 

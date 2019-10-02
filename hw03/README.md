@@ -1,7 +1,7 @@
 
 ## **STAT545A Homework Assignment 03 README**
 
-------------------------------------------
+
 
 In this folder you will find the files for homework assignment 03 which was due on Oct 1, 2019 at 23:59. Currently, it contains the .rmd and .md file as well as the html links for the figures. 
 

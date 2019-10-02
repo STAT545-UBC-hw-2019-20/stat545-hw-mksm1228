@@ -36,9 +36,9 @@ library(ggplot2)
 ```{r, warning=FALSE}
 table1 <- gapminder %>%
             group_by(continent) %>%
-            summarize(Min = min(gdpPercap), Max = max(gdpPercap)) %>%
+            summarize(Max = max(gdpPercap), Min = min(gdpPercap)) %>%
             kable(., format = "html", caption = 
-            "Max and Min GDP Per Capita within the Continents") %>%
+            "Max and Min of GDP Per Capita within the Continents") %>%
             kable_styling()
 ```
 <!-- Putting the table into a variable called table1 so we can print it out later side-by-side with the figure. Finding the min and max gdpPercap for each continent. -->
@@ -65,11 +65,11 @@ fig1
 ```
 </div>
 <div class="clearer"></div>
-<!-- Printing table 1 and figure 1 side-by-side -->
+<!-- Printing table 1 and figure 1 side-by-side, hiding the code to not disrupt the tables and figures. -->
 
-The table and figure above shows the minimum and maximum GDP Per Capita within each continent. Red represents the minimum GDP Per Capita. Blue represents the maximum GDP Per Capita. GDP Per Capita is on a log10 scale. The figure above shows that Africa has the smallest minimum GDP Per Capita compared to the minimum GDP Per Capita of other other continents. In terms of maximum GDP Per Capita, Asia has the largest maximum GDP Per Capita compared to the other continents. 
+The table and figure above shows the maximum and minimum GDP Per Capita within each continent. Red represents the minimum GDP Per Capita. Blue represents the maximum GDP Per Capita. GDP Per Capita is on a log10 scale. The figure above shows that Africa has the smallest minimum GDP Per Capita compared to the minimum GDP Per Capita of the other continents. In terms of maximum GDP Per Capita, Asia has the largest maximum GDP Per Capita compared to the other continents. 
 
-##### **Task Option 3: Spread of GDP Per Capita Within the Continents** 
+##### **Task Option 3: Spread of GDP Per Capita within the Continents** 
 
 ---------------------
 
@@ -79,7 +79,7 @@ table2 <- gapminder %>%
             summarize(median = median(gdpPercap), SD = sd(gdpPercap),  
             MedAbsdev = mad(gdpPercap), InQuartRange = IQR(gdpPercap)) %>%
             kable(., format = "html", caption = 
-            "Spread of GDP Per Capita Within the Continents")%>%
+            "Spread of GDP Per Capita within the Continents")%>%
             kable_styling(full_width = F)
 ```
 <!-- Putting the table into a variable called table2 so we can print it out later side-by-side with the figure. Finding the spread of gdpPercap within the continents. Full_width compresses the columns together.-->
@@ -95,7 +95,7 @@ fig2 <- gapminder %>%
           ggtitle("Spread of GDP Per Capita within the Continents")+
           theme_bw()
 ```
-<!-- Putting the boxplot figure into a variable called fig2 so we can print it out later side-by-side with the table. -->
+<!-- Putting the boxplot figure into a variable called fig2 so we can print it out later side-by-side with the table. Hiding the code to not disrupt the tables and figures. -->
 
 <div class = "twoC">
 ```{r, echo=FALSE}
@@ -106,7 +106,7 @@ fig2
 <div class="clearer"></div>
 <!-- Printing table 2 and figure 2 side-by-side -->
 
-The table and figure above shows the spread of GDP Per Capita within each continent using a boxplot. I calculated the median, standard deviation (SD), median absolute deviation (MedAbsDev) and the interquartile range (InQuartRange) and this is seen in the table. From both the table and figure, we can see that Asia has the largest spread of GDP Per Capita compared to the other continents. In contrast, we can see from both the table and figure that Africa has the smallest spread of GPD Per Capita compared to the other continents. Also to note, a log10 scale was not applied to the Y axis. This is because it resulted in the inability to visualize and appreciate the spread of GDP Per Capita within each continent. 
+The table above shows the spread of GDP Per Capita within each continent. I calculated the median, standard deviation (SD), median absolute deviation (MedAbsDev) and the interquartile range (InQuartRange). Next, I plotted a boxplot to visualize these parameters. From both the table and figure, we can see that Asia has the largest spread (SD) of GDP Per Capita compared to the other continents. In contrast, we can see from both the table and figure that Africa has the smallest spread (SD) of GPD Per Capita compared to the other continents. Also to note, a log10 scale was not applied to the Y axis. This is because it resulted in the inability to visualize and appreciate the spread of GDP Per Capita within each continent. 
 
 
 
@@ -118,13 +118,13 @@ The table and figure above shows the spread of GDP Per Capita within each contin
 table3 <- gapminder %>%
             arrange(year) %>%
             group_by(year) %>%
-            summarize(Mean = mean(lifeExp, trim = 0.2)) %>%
+            summarize(MeanlifeExp = mean(lifeExp, trim = 0.2)) %>%
             kable(., format = "html", caption = 
-            "Trimmed Mean of Life Expectancy for Different Years") %>%
+            "Trimmed Mean of Life Expectancy (20%) for Different Years") %>%
             kable_styling()
 
 ```
-<!-- Putting the table into a variable called table3 so we can print it out later side-by-side with the figure. Calculate the mean lifeExp and trimming 0.2 of observations from each end.  -->
+<!-- Putting the table into a variable called table3 so we can print it out later side-by-side with the figure. Calculate the mean lifeExp and trimming 0.2 of observations from each end. Hiding the code to not disrupt the tables and figures. -->
 
 ```{r, warning=FALSE}
 fig3 <- gapminder %>%
@@ -132,10 +132,11 @@ fig3 <- gapminder %>%
           group_by(year) %>%
           summarize(mean = mean(lifeExp, trim = 0.2)) %>%
           ggplot(., aes(year, mean))+
-          geom_line(color = "dark green")+
+          geom_line(color = "orange", size = 2)+
           xlab("Year")+
-          ylab("Trimmed Mean Life (20%) Expectancy (Years)")+
-          ggtitle("Trimmed Mean Life (20%) Expectancy for Different Years")+
+          ylab("Trimmed Mean of Life Expectancy (20%) (Years)")+
+          ggtitle(
+          "Trimmed Mean of Life Expectancy (20%) for Different Years")+
           theme_bw()
 ```
 <!-- Putting the figure into a variable called fig3 so we can print it out later side-by-side with the table -->
@@ -149,7 +150,7 @@ fig3
 <div class="clearer"></div>
 <!-- Printing table 3 and figure 3 side-by-side -->
 
-The table and figure above shows how a trimmed mean of life expectancy changes from year-to-year. I have a chosen a trim fraction of 0.2 (20%). From both the table and figure, we can see that as the years increase, the trimmed mean life expectancy also increases.
+The table and figure above shows how a trimmed mean of life expectancy changes every 5 years in the gapminder data set. I have chosen a trim fraction of 0.2 (20%). From both the table and figure, we can see that as the years increase, the trimmed mean of life expectancy also increases.
 
 
 

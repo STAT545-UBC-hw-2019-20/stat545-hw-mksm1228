@@ -28,6 +28,8 @@ In addition, we were asked to choose one of two variants for each exercise. Univ
 
 ### Exercise 3: Table Joins
 
+----------------------------------------
+
 For Exercise 3, we were asked to:
 1. For each guest in the guestlist (```guest``` tibble), add a column for email address, which can be found in the ```email``` tibble.
 2. Find who we have emails for, yet are not on the guestlist.

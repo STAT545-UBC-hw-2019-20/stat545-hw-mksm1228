@@ -16,15 +16,15 @@ In addition, we were asked to choose one of two variants for each exercise. Univ
 ---------------------------------------
 
 1. Make a tibble with one row per year, and columns for life expectancy for two or more countries.
-2.Take advantage of this new data shape to scatterplot life expectancy for one country against that of another.
-3.Re-lengthen the data.
+2. Take advantage of this new data shape to scatterplot life expectancy for one country against that of another.
+3. Re-lengthen the data.
 
 ### Exercise 2: Multivariate Option 1
 
 ---------------------------------------
 
-1.Make a tibble with one row per year, and columns for life expectancy and GDP per capita (or two other numeric variables) for two or more countries.
-2.Re-lengthen the data.
+1. Make a tibble with one row per year, and columns for life expectancy and GDP per capita (or two other numeric variables) for two or more countries.
+2. Re-lengthen the data.
 
 ### Exercise 3: Table Joins
 

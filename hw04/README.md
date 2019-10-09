@@ -9,7 +9,7 @@ There were 3 exercises in this homework assignment. For Exercise 1 and 2, we wer
 2. Produce a plot of the wide format. 
 3. Relengthen the wider data.
 
-In addition, we were asked to choose one of two variants for each exercise. Univariate Option 1 was chosen for Exercise 1 and Multivariate Option 1 was chosen for Exercise 2. More details about the variant tasks are posted below. 
+In addition, we were asked to choose one of two variants for each Exercise 1 and 2. Univariate Option 1 was chosen for Exercise 1 and Multivariate Option 1 was chosen for Exercise 2. More details about the variant tasks are posted below. 
 
 ### Exercise 1: Univariate Option 1
 

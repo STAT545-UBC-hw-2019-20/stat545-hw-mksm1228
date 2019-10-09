@@ -21,7 +21,7 @@ library(knitr)
 
 ------------------------------
 
-## **Univariate Option 1.1 - Putting Data in Wider Format: Life Expectancy** 
+## **Univariate Option 1.1** 
 ```{r, warning=FALSE}
 gapminder %>%
   filter(country == "Canada" | country == "Nigeria" | country == "Japan" | 
@@ -34,7 +34,7 @@ gapminder %>%
 
 First, I filtered the gapminder data set to select the following countries: Australia, Canada,  Japan, Nigeria and Spain. One country was chosen from each continent. Next, I used the pivot_wider function to put the life expectancy data for all five countries into a wider format. This makes it easier to compare the life expectancy between all five countries across the different years. From this table, we can see that some countries will have similar life expectancies. For example, Australia, Canada and Spain shared similar life expectancies in 1992.
 
-## **Univariate Option 1.2 - Scatterplot of Wide Data**
+## **Univariate Option 1.2**
 ```{r, warning=FALSE}
 gapminder %>%
   filter(country == "Canada" | country == "Nigeria" | country == "Japan" | 
@@ -60,7 +60,7 @@ gapminder %>%
 
 I plotted a scatterplot of the Life Expectancy versus Year for the 5 countries I have selected. The alpha function was used to help visualize and differentiate points of overlap. We can see that across all the years, Nigeria has the lowest life expectancy compared to all the other countries. In contrast, Canada, Japan, Spain and Australia had comparable life expectancies from 1967 and onwards with Japan having the highest life expectancy in the more recent years. 
 
-## **Univariate Option 1.3 - Relengthening the Data**
+## **Univariate Option 1.3**
 ```{r, warning=FALSE}
 gapminder %>%
   filter(country == "Canada" | country == "Nigeria" | country == "Japan" | 
@@ -118,7 +118,7 @@ I used the pivot_longer function to re-lengthen the tibble I previously widened.
 
 ---------------------------
 
-## **Exercise 3.1:** 
+## **Exercise 3.1** 
 ```{r, warning=FALSE, message=FALSE}
 guest <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/attend.csv")
 email <- read_csv("https://raw.githubusercontent.com/STAT545-UBC/Classroom/master/data/wedding/emails.csv")

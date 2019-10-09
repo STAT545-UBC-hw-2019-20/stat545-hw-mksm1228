@@ -93,7 +93,7 @@ gapminder %>%
   knitr::kable()
 ```
 
-First, I filtered out the following countries from the gapminder data set: Japan, China, Thailand, Malaysia, and Singapore. Next, I used the pivot wider function to create separate columns for the Life Expectancy and GDP Per Capita for each country. Then I used the kable function to produce a table. Putting the data in a wider format makes it easier for us to compare the life expectancy and GDP Per Capita between all these countries across different years.
+First, I filtered out the following countries from the gapminder data set: Japan, China, Thailand, Malaysia, and Singapore. Next, I used the pivot_wider function to create separate columns for the Life Expectancy and GDP Per Capita for each country. Then I used the kable function to produce a table.
 
 ## **Multivariate Option 1.2**
 ```{r, warning=FALSE}

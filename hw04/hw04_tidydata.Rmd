@@ -31,7 +31,7 @@ gapminder %>%
   pivot_wider(id_cols = year,
               names_from = country,
               values_from = lifeExp) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 First, I filtered the gapminder data set to select the following countries: Australia, Canada,  Japan, Nigeria and Spain. One country was chosen from each continent. Next, I used the pivot_wider function to put the life expectancy data for all five countries into a wider format. This makes it easier to compare the life expectancy between all five countries across the different years. From this table, we can see that some countries will have similar life expectancies. For example, Australia, Canada and Spain shared similar life expectancies in 1992.
@@ -74,10 +74,10 @@ gapminder %>%
               names_to = "country",
               values_to = "lifeExp") %>%
   arrange(country) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
-I used the pivot_longer function after the pivot_wider function to re-lengthen the data. Then I used the kable function to produce a table.
+I used the pivot_longer function after the pivot_wider function to re-lengthen the data. Then I used the datatable function to produce a table.
 
 # **Exercise 2: Multivariate Data Reshaping**
 
@@ -92,7 +92,7 @@ gapminder %>%
               names_from = country,
               names_sep = "_",
               values_from = c(lifeExp, gdpPercap)) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 First, I filtered out the following countries from the gapminder data set: Japan, China, Thailand, Malaysia, and Singapore. Next, I used the pivot wider function to create separate columns for the Life Expectancy and GDP Per Capita for each country. Then I used the kable function to produce a table. Putting the data in a wider format makes it easier for us to compare the life expectancy and GDP Per Capita between all these countries across different years.
@@ -111,10 +111,10 @@ gapminder %>%
                names_sep = "_",
                values_to = c("lifeExp", "gdpPercap")) %>%
                arrange(country) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
-I used the pivot_longer function to re-lengthen the tibble I previously widened. Then I used the kable function to produce a table.
+I used the pivot_longer function to re-lengthen the tibble I previously widened. Then I used the datatable function to produce a table.
 
 # **Exercise 3: Table Joins**
 
@@ -135,7 +135,7 @@ email2 <- email %>%
 
 guest %>% 
   left_join(email2, by = "name") %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 In the email tibble, I renamed the column "guest" to "name" so that it can joined afterwards with the guest tibble which also has a column titled "name." I then transformed the email tibble to display individual names along with their respective email addresses. This was done because the original format of the email tibble has the names grouped up to a single email address. After ungrouping the names and email addresses, I assigned this newly formatted tibble to the variable "email2." Finally, I used the left_join function to add the email column to the guest tibble. This results in an email column being added to the guestlist. 
@@ -144,7 +144,7 @@ In the email tibble, I renamed the column "guest" to "name" so that it can joine
 ## **Exercise 3.2**
 ```{r, warning=FALSE}
 anti_join(email2, guest) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 I used the email2 tibble since this displayed all the names individually with their respective email address. Next, I used the anti_join function to filter out who we have emails for but are not on the guestlist. 
@@ -152,7 +152,7 @@ I used the email2 tibble since this displayed all the names individually with th
 ## **Exercise 3.3**
 ```{r, warning=FALSE}
 full_join(email2, guest) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 Using the email2 tibble that separates all the names and email addresses into individual rows, I then used the full_join function to make a guestlist that includes everyone we have emails for (in addition to those on the original guestlist). 

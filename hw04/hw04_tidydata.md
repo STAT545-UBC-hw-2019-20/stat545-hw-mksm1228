@@ -31,7 +31,7 @@ gapminder %>%
   pivot_wider(id_cols = year,
               names_from = country,
               values_from = lifeExp) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 
@@ -95,7 +95,7 @@ gapminder %>%
               names_to = "country",
               values_to = "lifeExp") %>%
   arrange(country) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 
@@ -179,7 +179,7 @@ gapminder %>%
               names_from = country,
               names_sep = "_",
               values_from = c(lifeExp, gdpPercap)) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 
@@ -216,7 +216,7 @@ gapminder %>%
                names_sep = "_",
                values_to = c("lifeExp", "gdpPercap")) %>%
                arrange(country) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 
@@ -307,7 +307,7 @@ email2 <- email %>%
 
 guest %>% 
   left_join(email2, by = "name") %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 
@@ -352,7 +352,7 @@ In the email tibble, I renamed the column "guest" to "name" so that it can joine
 
 ```r
 anti_join(email2, guest) %>%
-  knitr::kable()
+  DT::datatable()
 ```
 
 ```

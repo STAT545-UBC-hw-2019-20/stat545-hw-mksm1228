@@ -37,8 +37,7 @@ First, I filtered the gapminder data set to select the following countries: Aust
 ## **Univariate Option 1.2**
 ```{r, warning=FALSE}
 gapminder %>%
-  filter(country == "Canada" | country == "Nigeria" | country == "Japan" | 
-        country == "Spain" | country == "Australia") %>%
+  filter(country == "Canada" | country == "Nigeria" | country == "Japan") %>%
   pivot_wider(id_cols = year,
               names_from = country,
               values_from = lifeExp) %>%
@@ -46,11 +45,9 @@ gapminder %>%
   geom_point(size = 2, alpha = 0.4)+
   geom_point(aes(year, Nigeria, color = "dark green"),  size = 2, alpha = 0.4)+
   geom_point(aes(year, Japan, color = "purple"),  size = 2, alpha = 0.4)+
-  geom_point(aes(year, Spain, color = "cyan"),  size = 2, alpha = 0.4)+
-  geom_point(aes(year, Australia, color = "dark orange"),  size = 2, alpha = 0.4)+
   scale_colour_identity(name = "Countries",
-                        breaks = c("deeppink", "dark green", "purple", "cyan", "dark orange"),
-                        labels = c("Canada", "Nigeria", "Japan", "Spain", "Australia"),
+                        breaks = c("deeppink", "dark green", "purple"),
+                        labels = c("Canada", "Nigeria", "Japan"),
                         guide = "legend") +
   xlab("Year")+
   ylab("Life Expectancy (Years)")+
@@ -58,7 +55,7 @@ gapminder %>%
   theme_bw()
 ```
 
-I plotted a scatterplot of the Life Expectancy versus Year for the 5 countries I have selected. The alpha function was used to help visualize and differentiate points of overlap. We can see that across all the years, Nigeria has the lowest life expectancy compared to all the other countries. In contrast, Canada, Japan, Spain and Australia had comparable life expectancies from 1967 and onwards with Japan having the highest life expectancy in the more recent years. 
+I plotted a scatterplot of the Life Expectancy versus Year for the 3 countries I have selected to plot. Plotting all 5 countries made the plot convoluted. The alpha function was used to help visualize and differentiate points of overlap. We can see that across all the years, Nigeria has the lowest life expectancy compared to Canada and Japan. In addition, Japan has had the higher life expectancy compared to Canada in the more recent years.
 
 ## **Univariate Option 1.3**
 ```{r, warning=FALSE}

@@ -1,0 +1,258 @@
+---
+title: "hw05-factor"
+author: "Martin"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, warning=FALSE, message=FALSE}
+library(gapminder)
+library(tidyverse)
+library(ggplot2)
+library(here)
+library(dplyr)
+library(forcats)
+library(scales)
+library(gridExtra) # for plotting graphs side-by-side
+library(grid) # for plotting graphs side-by-side
+library(kableExtra)
+```
+
+
+## **Exercise 1: Explain the Value of the ```here::here``` Package**
+
+---------------------------------------------------------
+
+- ```here::here``` can construct paths to your project's files. It can detect the root directory at the time when the package is loaded. This makes it easier to use sub-directories within projects because you only need to specify the path from the root to the sub-directory and not the entire path.
+
+- Thus,```here::here``` allows other users to open and run your code from their own computer because the paths created by ```here::here``` are platform-independent. In addition, once the path has been set, ```here::here``` will work regardless of where the local copy is stored for the other person making it very robust.
+
+## **Exercise 2: Factor Management**
+
+-------------------------------------
+
+```{r, warning=FALSE, message=FALSE}
+str(gapminder)
+```
+- Using str(), we can see the data type each variable is associated with. In addition, we can see that there are 1704 rows of observations.
+- Since for this task we are interested in dropping Oceania, we will focus on the continent variable. It is a factor with 5 levels. Let's look at what the 5 levels are.
+
+```{r, warning=FALSE, message=FALSE}
+levels(gapminder$continent)
+```
+- Using levels(), we can see the names of the 5 levels for the Continent factor. 
+- Before removing Oceania, let us see how many rows of observations it contains by filtering it out and then using nrow().
+
+```{r, warning=FALSE, message=FALSE}
+gapminder %>%
+  filter(continent == "Oceania") %>%
+  nrow() 
+```
+
+- As shown above, Oceania contains 24 rows of observations. From this, we know we will be succesful in dropping Oceania from the data set when the new data set has 24 less rows of observations. 
+
+### **Dropping Oceania**
+
+--------------------------------------
+
+```{r, warning=FALSE, message=FALSE}
+oceaniagone <- gapminder %>%
+  filter(continent != "Oceania")
+
+oceaniagone2 <- oceaniagone %>% # Putting this into a new variable because the drop isn't saving
+                  droplevels() 
+```
+
+- I filtered out all the continents that were not Oceania and put them into a new variable called "oceaniagone."
+- Next, I used the droplevels() to drop all unused levels in both country and continent.
+- I put all of this into a new variable "oceaniagone2" because from my testing, the drop does not save unless I put it into a new variable.
+
+```{r, warning=FALSE, message=FALSE}
+gapminder %>%
+  str()
+
+oceaniagone2 %>%
+  str() 
+
+levels(oceaniagone2$continent)
+```
+
+- I used str() of both the original gapminder data set and the oceaniagone2 data set for comparison.
+- We can see that the oceaniagone2 data set has 24 less observations, 2 less country levels, and 1 less continent level, thus we were able to drop Oceania and all unused factor levels. 
+- We can also see that Oceania is gone when we use levels() on the continents of oceaniagone2.
+
+### **Reordering the levels of ```continent```**
+
+```{r, warning=FALSE, message=FALSE}
+oceaniagone2 %>%
+  mutate(continent = fct_reorder(continent, gdpPercap, min)) %>%
+  ggplot(aes(continent, gdpPercap, fill = continent)) +
+  geom_boxplot()+
+  scale_y_log10("GDP per capita (US$)", labels = scales::dollar_format())+
+  theme_bw() +
+  ylab("GDP Per Capita (US$)") + xlab("Continent")
+```
+
+- I created a boxplot to evaluate the spread of GDP Per Capita within the oceaniagone2 data set.
+- Here, I used the fct_reorder function to reorder the continents by the min GDP Per Cap.
+- Africa had the smallest min GDP Per Cap while America had the largest min GDP Per Cap
+- We can verify this worked by producing a tibble with the min GDP Per Cap for the oceaniagone2 data set.
+
+```{r, warning=FALSE, message=FALSE}
+oceaniagone2 %>%
+  group_by(continent) %>%
+  summarize(min_gdpPercap = min(gdpPercap)) %>%
+  arrange(min_gdpPercap) %>%
+  kable(., format = "html", caption = 
+  "Min GDP Per Capita for each Continent")%>%
+  kable_styling()
+```
+
+- When we compare the order of the continents between the table and the figure above, we can see that fct_reorder worked.
+- Let's see what the order of the continents look like when we reorder by max GDP Per Cap.
+
+```{r, warning=FALSE, message=FALSE}
+oceaniagone2 %>%
+  mutate(continent = fct_reorder(continent, gdpPercap, max)) %>%
+  ggplot(aes(continent, gdpPercap, fill = continent)) +
+  geom_boxplot()+
+  scale_y_log10("GDP per capita (US$)", labels = scales::dollar_format())+
+  theme_bw() +
+  ylab("GDP Per Capita (US$)") + xlab("Continent")
+```
+
+- Here, I uesd the fct_reorder function to reorder the continents by the max GDP Per Cap.
+- As a result, Africa has the smallest max GDP Per Cap and Asia has the largest max GDP Per Cap.
+- To verify this, let's look at the max GDP Per Cap for each continent. 
+
+```{r, warning=FALSE, message=FALSE}
+oceaniagone2 %>%
+  group_by(continent) %>%
+  summarize(max_gdpPercap = max(gdpPercap)) %>%
+  arrange(max_gdpPercap) %>%
+  kable(., format = "html", caption = 
+  "Min GDP Per Capita for each Continent")%>%
+  kable_styling()
+```
+
+- From the table above, we can see that Africa hsa the smallest max GDP Per Cap and Asia has the largest max GDP Per Cap. 
+
+## **Exercise 3: File Input/Output (I/O)**
+
+-----------------------------------------------
+
+```{r, warning=FALSE, message=FALSE}
+gap_gdppercap <- gapminder %>%
+                    filter(continent == "Asia") %>%
+                    group_by(country) %>%
+                    summarize(mean_gdpPercap = mean(gdpPercap))
+write_csv(gap_gdppercap, "gap_gdppercap.csv")
+```
+
+- I wrote a new .csv file that summarizes the mean GDP Per Capita for countries in Asia and put this into a variable called "gap_gdppercap". 
+
+```{r, warning=FALSE, message=FALSE}
+here()
+write_csv(gap_gdppercap, here::here("hw05", "Input Exercise", "exported_gap_gdppercap.csv"))
+```
+
+- I have to run the here function first before using the here package, otherwise the package will not open the connection. 
+- I used the here package to specify the path for the file. The next file is now contained in the hw05 folder in a subfolder named "Input Exercise."
+- To demonstrate this works, I renamed the .csv file to "exported_gap_gdppercap.csv."
+
+```{r, warning=FALSE, message=FALSE}
+here()
+read_csv(here::here("hw05", "Input Exercise", "exported_gap_gdppercap.csv")) %>%
+  ggplot(., aes(mean_gdpPercap, country))+
+  geom_point(color = "orange")+
+  theme_bw()+
+  scale_x_log10("GDP per capita (US$)", labels = scales::dollar_format())+
+  xlab("GDP Per Capita (US$)")+
+  ylab("Countries in Asia")+
+  
+  ggtitle("Average GDP Per Capita for Countries in Asia")
+```
+
+- Once again, I have to run the here function first and then I use the here package and provide the path for the package to find, open and read the file.
+- I plotted GDP Per Cap versus Country and we can see that the file was read properly using hte here package.
+
+```{r, warning=FALSE, message=FALSE}
+here()
+read_csv(here::here("hw05", "Input Exercise", "exported_gap_gdppercap.csv")) %>%
+  ggplot(., aes(mean_gdpPercap, fct_reorder(country, mean_gdpPercap)))+
+  geom_point(color = "orange")+
+  theme_bw()+
+  scale_x_log10("GDP per capita (US$)", labels = scales::dollar_format())+
+  xlab("GDP Per Capita (US$)")+
+  ylab("Countries in Asia")+
+  ggtitle("Average GDP Per Capita Recorded for Countries in Asia")
+  
+```
+
+- R automically lists the countries in alphabetical order so I used the fct_reorder function to order the countries. 
+- Now we can see that Myanmar had the lowest average GDP Per Cap and Kuwait had the highest average GDP Per Cap.
+- Overall, the created file survived the round trip of writing to file then reading it back in.
+
+## **Exercise 4: Visualization Design**
+
+-----------------------------------------------
+
+
+```{r, warning=FALSE, message=FALSE}
+oldplot <- gapminder %>%
+  group_by(continent, country) %>%
+  summarize(n_countries = n_distinct(country)) %>%
+  ggplot(., aes(continent, n_countries))+
+  geom_col(fill = "orange")+
+  ggtitle("Number of Countries in Each Continent")+
+  ylab("Country Count")+
+  xlab("Continent")+
+  theme_bw()
+
+newplot <- gapminder %>%
+  group_by(continent, country) %>%
+  summarize(n = n_distinct(country)) %>%
+  tally(n) %>%
+  ggplot(., aes(fct_reorder(continent, n, .desc = TRUE), n, fill = continent, legend = FALSE))+
+  geom_col()+
+  geom_text(aes(label = n), size = 4,  vjust=-0.40)+
+  ylab("")+
+  xlab("")+
+  ggtitle("Number of Countries in Each Continent")+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  panel.background = element_blank(), axis.line = element_line(colour = "black"),
+  axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(), 
+  legend.position = "none")
+
+blank<-rectGrob(gp=gpar(col="white")) # make a white spacer grob
+grid.arrange(oldplot, blank, newplot, widths=c(10, 0.5, 9), ncol = 3) # code from https://stackoverflow.com/questions/31913686/how-to-align-barplots-using-grid-arrange
+```
+
+- The figure on the left was taken from hw02 and the figure on the right is the recreation of the same figure using the principles of effective graphs. 
+- I removed the background and grid lines as well as redundant labels.
+- Each continent is now represented by it's own colour rather than sharing the same colour as the other continents.
+- Counts of all the countries within the continent were added onto the graph. In the previous version, it was difficult to count the actual number of countries in the continent.
+- Finally, I rearranged the order the continents to go from largest number of countries to smallest number of countries. 
+- I think the changes I made present the figure in a much more effective manner. I removed a lot of redundant elements and included some visualization changes such as the counts of the countries for each continent. This really presents the message of the figure in a more attractive and impactful manner.
+
+## **Exercise 5: Writing Figures to File**
+
+----------------------------------------
+
+```{r, warning=FALSE, message=FALSE}
+ggsave("newplot.png", plot = newplot, width = 4, height = 4, scale = 1) 
+ggsave("oldplot.png", plot = oldplot, width = 4, height = 4, scale = 1)
+```
+- I used ggsave to save the old and new version of the figure from hw02 into a .png.
+- Now I am going to put the images directly onto my report. Using the following code ```![Alt Text](/path/to/img.png)```
+
+![Old Country Count Plot](oldplot.png)
+![New Country Count Plot](newplot.png)
+
+

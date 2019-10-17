@@ -20,7 +20,8 @@ library(dplyr)
 library(forcats)
 library(scales)
 library(kableExtra)
-library(cowplot) # for plotting graphs side-by-side
+library(gridExtra) # for plotting graphs side-by-side
+library(grid) # for plotting graphs side-by-side
 ```
 
 
@@ -229,7 +230,8 @@ newplot <- gapminder %>%
   axis.ticks.y=element_blank(), 
   legend.position = "none") # I learned how to edit the elements of the figure from http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements
 
-plot_grid(oldplot, newplot, ncol = 2) # I got this package from https://stackoverflow.com/questions/1249548/side-by-side-plots-with-ggplot2
+blank<-rectGrob(gp=gpar(col="white")) # make a white spacer grob
+grid.arrange(oldplot, blank, newplot, widths=c(10, 0.5, 9), ncol = 3) # code from https://stackoverflow.com/questions/31913686/how-to-align-barplots-using-grid-arrange
 ```
 
 - The figure on the left was taken from hw02 and the figure on the right is the recreation of the same figure using the principles of effective graphs. 

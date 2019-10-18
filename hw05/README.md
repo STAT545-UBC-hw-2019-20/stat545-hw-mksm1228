@@ -38,7 +38,7 @@ You are expected to create something new, probably by filtering or grouped-summa
 
 With the imported data, play around with factor levels and use factors to order your data with one of your factors (i.e. non-alphabetically). For the I/O method(s) you chose, comment on whether or not your newly created file survived the round trip of writing to file then reading back in.
 
-### **Exercise 4: Visualizatio design**
+### **Exercise 4: Visualization design**
 
 ------------------------------------------------------------
 

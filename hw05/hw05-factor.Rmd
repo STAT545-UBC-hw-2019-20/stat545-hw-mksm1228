@@ -55,7 +55,7 @@ gapminder %>%
   nrow() 
 ```
 
-- As shown above, Oceania contains 24 rows of observations. From this, we know we will be succesful in dropping Oceania when the new data set has 24 less rows of observations. 
+- As shown above, Oceania contains 24 rows of observations. From this, we know we will be successful in dropping Oceania when the new data set does not contain the factor "Oceania" as well as have 24 less rows of observations. 
 
 ### **Dropping Oceania**
 
@@ -89,7 +89,7 @@ levels(oceaniagone2$continent)
   - 24 less rows of observations,
   - 2 less country levels,
   - and 1 less continent level. 
-- We can also see that Oceania is gone when we use levels() on the continents of oceaniagone2. Thus we were able to drop Oceania and all unused factor levels. 
+- We can also see that Oceania is gone when we use levels() on the continents of oceaniagone2. Thus, we were able to drop Oceania and all unused factor levels. 
 
 ### **Reordering the levels of ```continent```**
 
@@ -100,13 +100,14 @@ oceaniagone2 %>%
   geom_boxplot()+
   scale_y_log10("GDP per capita (US$)", labels = scales::dollar_format())+
   theme_bw() +
+  ggtitle("Order of Continents based on Max GDP Per Cap")+
   ylab("GDP Per Capita (US$)") + xlab("Continent")
 ```
 
-- I created a boxplot to evaluate the spread of GDP Per Capita within the oceaniagone2 data set.
+- I created a boxplot to evaluate the spread of GDP Per Capita within the continents of the oceaniagone2 data set.
 - Here, I used the fct_reorder() to reorder the continents by the min GDP Per Cap.
-- Africa had the smallest min GDP Per Cap while America had the largest min GDP Per Cap
-- We can verify this worked by producing a table with the min GDP Per Cap for the oceaniagone2 data set.
+- Based on the order, we can tell that Africa had the lowest min GDP Per Cap while Americas had the highest min GDP Per Cap
+- We can verify this worked by producing a table with the min GDP Per Cap for the continents in the oceaniagone2 data set.
 
 ```{r, warning=FALSE, message=FALSE}
 oceaniagone2 %>%
@@ -118,7 +119,7 @@ oceaniagone2 %>%
   kable_styling()
 ```
 
-- When we compare the order of the continents between the table and the figure above, we can see that fct_reorder() worked.
+- When we compare the order of the continents between the table and the figure above, we can see that fct_reorder() worked for the figure.
 - Let's see what the order of the continents looks like when we reorder by max GDP Per Cap.
 
 ```{r, warning=FALSE, message=FALSE}
@@ -128,12 +129,13 @@ oceaniagone2 %>%
   geom_boxplot()+
   scale_y_log10("GDP per capita (US$)", labels = scales::dollar_format())+
   theme_bw() +
+  ggtitle("Order of Continents based on Max GDP Per Cap")+
   ylab("GDP Per Capita (US$)") + xlab("Continent")
 ```
 
 - Here, I used the fct_reorder() to reorder the continents by the max GDP Per Cap.
-- As a result, Africa has the smallest max GDP Per Cap and Asia has the largest max GDP Per Cap.
-- To verify this, let's create a table that looks at the max GDP Per Cap for each continent. 
+- Based on the order, we can tell that Africa had the lowest max GDP Per Cap and Asia had the highest max GDP Per Cap.
+- To verify this, let's create a table that looks at the max GDP Per Cap for each continent in the oceaniagone2 data set.
 
 ```{r, warning=FALSE, message=FALSE}
 oceaniagone2 %>%
@@ -145,7 +147,7 @@ oceaniagone2 %>%
   kable_styling()
 ```
 
-- The order of the continents between the table and figure are the same, verifying that our fct_reorder() worked.
+- The order of the continents between the table and figure are the same, verifying that fct_reorder() worked for the figure.
 
 ## **Exercise 3: File Input/Output (I/O)**
 
@@ -159,14 +161,14 @@ gap_gdppercap <- gapminder %>%
 write_csv(gap_gdppercap, "gap_gdppercap.csv")
 ```
 
-- I wrote a new .csv file that summarizes the mean GDP Per Capita for countries in Asia and put this into a variable called "gap_gdppercap". 
+- I wrote a new .csv file that summarizes the mean GDP Per Cap for countries in Asia and put this into a variable called "gap_gdppercap". 
 
 ```{r, warning=FALSE, message=FALSE}
 write_csv(gap_gdppercap, here("hw05", "Input Exercise", "exported_gap_gdppercap.csv"))
 ```
 
-- I used here() to specify the path for the file. The next file is now contained in the hw05 folder in a subfolder named "Input Exercise."
-- To demonstrate this path works, I renamed the .csv file to "exported_gap_gdppercap.csv."
+- I used here() to specify the path for the file. The file is now contained in the hw05 folder in a subfolder named "Input Exercise."
+- To demonstrate this path works, I renamed the "gap_gdppercap.csv" file to "exported_gap_gdppercap.csv."
 - Next, I am going to read the file in using read_csv().
 
 ```{r, warning=FALSE, message=FALSE}
@@ -176,7 +178,6 @@ read_csv(here("hw05", "Input Exercise", "exported_gap_gdppercap.csv")) %>%
   theme_bw()+
   scale_x_log10("GDP Per Capita (US$)", labels = scales::dollar_format())+
   ylab("Countries in Asia")+
-  
   ggtitle("Average GDP Per Capita for Countries in Asia")
 ```
 
@@ -191,19 +192,34 @@ read_csv(here("hw05", "Input Exercise", "exported_gap_gdppercap.csv")) %>%
   scale_x_log10("GDP Per Capita (US$)", labels = scales::dollar_format())+
   ylab("Countries in Asia")+
   ggtitle("Average GDP Per Capita Recorded for Countries in Asia")
-  
 ```
 
-- I used fct_reorder() to reorder the countries from lowest average GDP Per Capita to highest average GDP Per Capita
-- Now we can see that Myanmar had the lowest average GDP Per Cap and Kuwait had the highest average GDP Per Cap.
-- Overall, the created file survived the round trip of writing to file then reading it back in.
+- I used fct_reorder() to reorder the countries from lowest average GDP Per Cap to highest average GDP Per Cap.
+- We can see that Myanmar has the lowest average GDP Per Cap and is on the bottom of the Y-axis. In contrast, Kuwait has the highest average GDP Per Cap and is on the top of the Y-axis.  
+- I can also reverse the order of the countries by making ```.desc``` = TRUE in fct_reorder().
+
+```{r, warning=FALSE, message=FALSE}
+read_csv(here("hw05", "Input Exercise", "exported_gap_gdppercap.csv")) %>%
+  ggplot(., aes(mean_gdpPercap, fct_reorder(country, mean_gdpPercap, .desc = TRUE)))+
+  geom_point(color = "dark blue")+
+  theme_bw()+
+  scale_x_log10("GDP Per Capita (US$)", labels = scales::dollar_format())+
+  ylab("Countries in Asia")+
+  ggtitle("Average GDP Per Capita Recorded for Countries in Asia")
+```
+
+- The Asian country with the lowest GDP Per Cap (Myanmar) is now on the top of Y-axis and the Asian country with the highest GDP Per Cap is now on the bottom of the Y-axis. 
+- Overall, it appears that write_csv() and read_csv() worked. The created file survived the round trip of writing to file then reading it back in.
+
 
 ## **Exercise 4: Visualization Design**
 
 -----------------------------------------------
 
+For this exercise, I will take a figure I produced for hw02 and recreate it with effective visualization principles in mind. The figure from hw02 demonstrates the number of countries within each continent of the gapminder data set.
+
 ```{r, warning=FALSE, message=FALSE}
-oldplot <- gapminder %>%
+gapminder %>%
   group_by(continent, country) %>%
   summarize(n_countries = n_distinct(country)) %>%
   ggplot(., aes(continent, n_countries))+
@@ -212,34 +228,80 @@ oldplot <- gapminder %>%
   ylab("Country Count")+
   xlab("Continent")+
   theme_bw()
+```
+
+- First, the colours for each continent are all orange. This makes it difficult to differentiate between the different continents. 
+- Second, the figure has a "redundant" X-axis title. Most people will figure out that the X-axis labels are continents. Arguably, the Y-axis title can also be considered to be "redundant" since the title of the figure tells you it is showing the number of countries within each continent.
+- Third, although the point of the figure is to show the number of countries within each continent, it is actually hard to determine what the number is exactly. I will now recreate the figure with effective visualization principles in mind. 
+
+```{r, warning=FALSE, message=FALSE}
+gapminder %>%
+    group_by(continent, country) %>%
+    summarize(n = n_distinct(country)) %>%
+    tally(n) %>%
+    ggplot(., aes(fct_reorder(continent, n, .desc = TRUE), n, 
+    fill = continent, legend = FALSE))+
+    geom_col()+
+    geom_text(aes(label = n), size = 4,  vjust=-0.40)+
+    ylab("")+
+    xlab("")+
+    ggtitle("Number of Countries in Each Continent")+
+    theme(panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank(),
+    panel.background = element_blank(), 
+    axis.line = element_line(colour = "black"),
+    axis.title.y=element_blank(), 
+    axis.text.y=element_blank(), 
+    axis.ticks.y=element_blank(), 
+    legend.position = "none") 
+```
+
+- This is the recreated figure from hw02. It looks completely different. Let's put them side-by-side for comparison.
+
+```{r, warning=FALSE, message=FALSE}
+oldplot <- gapminder %>%
+              group_by(continent, country) %>%
+              summarize(n_countries = n_distinct(country)) %>%
+              ggplot(., aes(continent, n_countries))+
+              geom_col(fill = "orange")+
+              ggtitle("Number of Countries in Each Continent")+
+              ylab("Country Count")+
+              xlab("Continent")+
+              theme_bw()
 
 newplot <- gapminder %>%
-  group_by(continent, country) %>%
-  summarize(n = n_distinct(country)) %>%
-  tally(n) %>%
-  ggplot(., aes(fct_reorder(continent, n, .desc = TRUE), n, fill = continent, 
-  legend = FALSE))+
-  geom_col()+
-  geom_text(aes(label = n), size = 4,  vjust=-0.40)+
-  ylab("")+
-  xlab("")+
-  ggtitle("Number of Countries in Each Continent")+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-  panel.background = element_blank(), axis.line = element_line(colour = "black"),
-  axis.title.y=element_blank(), axis.text.y=element_blank(), 
-  axis.ticks.y=element_blank(), 
-  legend.position = "none") # I learned how to edit the elements of the figure from http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements
+              group_by(continent, country) %>%
+              summarize(n = n_distinct(country)) %>%
+              tally(n) %>%
+              ggplot(., aes(fct_reorder(continent, n, .desc = TRUE), n, 
+              fill = continent, legend = FALSE))+
+              geom_col()+
+              geom_text(aes(label = n), size = 4,  vjust=-0.40)+
+              ylab("")+
+              xlab("")+
+              ggtitle("Number of Countries in Each Continent")+
+              theme(panel.grid.major = element_blank(), 
+              panel.grid.minor = element_blank(),
+              panel.background = element_blank(), 
+              axis.line = element_line(colour = "black"),
+              axis.title.y=element_blank(), 
+              axis.text.y=element_blank(), 
+              axis.ticks.y=element_blank(), 
+              legend.position = "none") 
+              # I learned how to edit the elements of the figure from  http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements
+
+# plotting the figures side-by-side using the gridExtra package
 
 blank<-rectGrob(gp=gpar(col="white")) # make a white spacer grob
 grid.arrange(oldplot, blank, newplot, widths=c(10, 0.5, 9), ncol = 3) # code from https://stackoverflow.com/questions/31913686/how-to-align-barplots-using-grid-arrange
 ```
 
-- The figure on the left was taken from hw02 and the figure on the right is the recreation of the same figure using the principles of effective graphs. 
-- I removed the background and grid lines as well as the redundant labels.
-- Each continent is now represented by it's own colour rather than sharing the same colour as the other continents.
-- The number of countries within the continent were added onto the new graph. In the previous version, it was difficult to identify the actual number of countries in the continent.
-- Finally, I rearranged the order the continents to go from largest number of countries to smallest number of countries. 
-- I think the changes I made present the figure in a much more effective manner. I removed a lot of redundant elements and included some visualization features such as including the number of the countries for each continent. This really presents the message of the figure in a more attractive and impactful manner.
+- There are many differences between the two figures that can be identified. The figure on the left is the old version and the figure on the right is the new version.
+- The grid lines and redundant labels have been removed giving the new version a much simpler look.
+- In the new version, each continent is now represented by it's own colour rather than sharing the same colour as the other continents.
+- The number of countries within each continent is now visible in the new version. In the previous version, it was difficult to identify the exact number of countries in the continent.
+- Finally, the order the continents has been reordered to go from highest number of countries to lowest number of countries in the new version giving it a much more organized look.
+- Overall, using the principles of effective visualization, all these changes present  the figure in a much more attractive and impactful manner.
 
 ## **Exercise 5: Writing Figures to File**
 
@@ -251,7 +313,7 @@ ggsave("newplot.png", plot = newplot, width = 5, height = 6, scale = 2)
 ```
 - I used ggsave to save the old and new version of the figure from hw02 into a .png.
 - I played around with the width, height, and scale argument. 
-- Now I am going to put the images directly onto my report. Using the following code ```![Alt Text](/path/to/img.png)```
+- Now I am going to put the images directly onto my report using the following code ```![Alt Text](/path/to/img.png)```
 
 ![Old Country Count Plot](oldplot.png)
 ![New Country Count Plot](newplot.png)

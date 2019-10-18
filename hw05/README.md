@@ -1,6 +1,6 @@
 # **STAT545A Homework Assignment 05 README**
 
-This final assignment was due on Oct 17, 2019 at 23:59. It currently contains the .rmd file, .png files, and this README.md file. Please [click here](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw05/hw05-factor.html) for the html version of the homework assignment. 
+This final assignment was due on Oct 17, 2019 at 23:59. It currently contains the .rmd file, .png files, the .csv files for the Input and Output exercise, and this README.md file. Please [click here](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw05/hw05-factor.html) for the html version of the homework assignment. 
 
 The goals for this assignment were to:
 

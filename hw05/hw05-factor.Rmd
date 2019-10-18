@@ -31,7 +31,7 @@ library(grid) # for plotting graphs side-by-side
 
 - ```here::here``` can construct paths to your project's files. It can detect the root directory at the time when the package is loaded. This makes it easier to use sub-directories within projects because you only need to specify the path from the root to the sub-directory and not the entire path.
 
-- Thus,```here::here``` allows other users to open and run your code from their own computer because the paths created by ```here::here``` are platform-independent. In addition, once the path has been set, ```here::here``` will work regardless of where the local copy is stored for the other person making it very robust.
+- Thus,```here::here``` allows other users to open and run your code from their own computer because the paths created by ```here::here``` are platform-independent. In addition, once the path has been set, ```here::here``` will work regardless of where the local copy is stored for the other users making it very robust.
 
 ## **Exercise 2: Factor Management**
 
@@ -46,7 +46,7 @@ str(gapminder)
 ```{r, warning=FALSE, message=FALSE}
 levels(gapminder$continent)
 ```
-- Using levels(), we can see the names of the 5 levels for the Continent factor. 
+- Using levels(), we can see the names of the 5 levels for the continent factor. 
 - Before removing Oceania, let us see how many rows of observations it contains by filtering it out and then using nrow().
 
 ```{r, warning=FALSE, message=FALSE}
@@ -70,8 +70,8 @@ oceaniagone2 <- oceaniagone %>% # Putting this into a new variable because the d
 ```
 
 - I filtered out all the continents that were not Oceania and put them into a new variable called "oceaniagone."
-- Next, I used the droplevels() to drop all unused levels in both country and continent.
-- I put all of this into a new variable "oceaniagone2" because from my testing, the drop does not save unless I put it into a new variable.
+- Next, I used droplevels() to drop all unused levels in both country and continent.
+- I put all of this into a new variable called "oceaniagone2" because from my testing, the effects of droplevel() does not save unless I put it into a new variable.
 - Now let's compare the gapminder data set to my oceaniagone2 data set.
 
 ```{r, warning=FALSE, message=FALSE}
@@ -208,7 +208,7 @@ read_csv(here("hw05", "Input Exercise", "exported_gap_gdppercap.csv")) %>%
   ggtitle("Average GDP Per Capita Recorded for Countries in Asia")
 ```
 
-- The Asian country with the lowest GDP Per Cap (Myanmar) is now on the top of Y-axis and the Asian country with the highest GDP Per Cap is now on the bottom of the Y-axis. 
+- The Asian country with the lowest GDP Per Cap (Myanmar) is now on the top of Y-axis and the Asian country with the highest GDP Per Cap is now on the bottom of the Y-axis (Kuwait). 
 - Overall, it appears that write_csv() and read_csv() worked. The created file survived the round trip of writing to file then reading it back in.
 
 
@@ -299,8 +299,8 @@ grid.arrange(oldplot, blank, newplot, widths=c(10, 0.5, 9), ncol = 3) # code fro
 - There are many differences between the two figures that can be identified. The figure on the left is the old version and the figure on the right is the new version.
 - The grid lines and redundant labels have been removed giving the new version a much simpler look.
 - In the new version, each continent is now represented by it's own colour rather than sharing the same colour as the other continents.
-- The number of countries within each continent is now visible in the new version. In the previous version, it was difficult to identify the exact number of countries in the continent.
-- Finally, the order the continents has been reordered to go from highest number of countries to lowest number of countries in the new version giving it a much more organized look.
+- The number of countries within each continent is now visible in the new version. In the previous version, it was difficult to identify the exact number of countries within the continent.
+- Finally, in the new version, the order the continents has been reordered to go from highest number of countries to lowest number of countries giving it a much more organized look.
 - Overall, using the principles of effective visualization, all these changes present  the figure in a much more attractive and impactful manner.
 
 ## **Exercise 5: Writing Figures to File**

@@ -32,18 +32,17 @@ This repository will contain folders labelled as "hw" plus the corresponding ass
 git clone https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228.git
 ```
 
-As of October 8, 2019, this repository contains the following files:
+As of October 17, 2019, this repository contains the following files:
 - [x] README.md
 - [x] Assignment 1
 - [x] Assignment 2
 - [x] Assignment 3
 - [x] Assignment 4
-- [ ] Assignment 5
-- [ ] Assignment 6
-- [ ] Assignment 7
+- [x] Assignment 5
 
 
-Click here to access the files for [Assignment 1](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01), [Assignment 2](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw02), URL webpage for [Assignment 3](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw03/hw03_dplyr-ggplot2.html), URL webpage for [Assignment 4](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw04/hw04_tidydata.html)
+
+Click here to access the files for [Assignment 1](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw01), [Assignment 2](https://github.com/STAT545-UBC-hw-2019-20/stat545-hw-mksm1228/tree/master/hw02), URL webpage for [Assignment 3](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw03/hw03_dplyr-ggplot2.html), URL webpage for [Assignment 4](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw04/hw04_tidydata.html), URL webpage for [Assignment 5](https://stat545-ubc-hw-2019-20.github.io/stat545-hw-mksm1228/hw05/hw05-factor.html)
 
 ### **About the author** :boy:
 
